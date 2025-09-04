@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinopark - Uma Viagem no Tempo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Gerais */
+        :root {
+            --primary-color: #6d5d4b; /* Marrom pedra */
+            --secondary-color: #a37b4b; /* Marrom madeira */
+            --accent-color: #e57c23; /* Laranja âmbar */
+            --text-color: #f5f5f5;
+            --bg-color: #1a1a1a;
+            --card-bg-color: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image: url('https://www.transparenttextures.com/patterns/rocky-wall.png'); /* Textura de pedra sutil */
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cabeçalho e Navegação */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: rgba(0,0,0,0.5);
+            border-bottom: 5px solid var(--accent-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 5em;
+            color: var(--text-color);
+            margin: 0;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 5px #000;
+        }
+        
+        .header .subtitle {
+            font-family: 'Teko', cursive;
+            font-size: 1.8em;
+            color: #ffc9a3; /* Laranja/âmbar mais claro */
+            font-weight: 600;
+            margin-top: 5px;
+            text-shadow: 0 0 8px var(--accent-color), 0 0 15px var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5em;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        /* Estilos de Seção */
+        h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 3.5em;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .section {
+            background-color: var(--card-bg-color);
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border: 1px solid #444;
+        }
+        
+        /* Grid de Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #333;
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+        }
+        
+        .card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2em;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        /* Grid de Animais/Dinossauros */
+         .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .animal-item {
+            background-color: #333;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .animal-item:hover {
+             transform: scale(1.05);
+        }
+
+        .animal-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .animal-item h4 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8em;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #111;
+            color: #aaa;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3.5em;
+            }
+            h2 {
+                font-size: 2.8em;
+            }
+            nav a {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+             h2 {
+                font-size: 2.2em;
+            }
+            .card-grid, .animal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Dinopark</h1>
+        <p class="subtitle">A Aventura Mais Selvagem da História Espera por Você!</p>
+    </header>
+
+    <div class="container">
+        
+        <nav>
+            <a href="#dinos">Era dos Dinossauros</a>
+            <a href="#stoneage">Idade da Pedra</a>
+            <a href="#tech">Nossa Tecnologia</a>
+        </nav>
+
+        <!-- SEÇÃO ERA DOS DINOSSAUROS -->
+        <div id="dinos" class="section">
+            <h2>A Era dos Gigantes: Dinossauros</h2>
+            <p>Prepare-se para uma jornada de mais de 150 milhões de anos! Em nossas instalações, você ficará cara a cara com as criaturas mais magníficas que já caminharam sobre a Terra. Viaje pelos períodos Triássico, Jurássico e Cretáceo e testemunhe o poder dos dinossauros.</p>
+            
+            <div class="animal-grid">
+                <div class="animal-item">
+                    <img src="trex.png" alt="Imagem de um Tiranossauro Rex">
+                    <h4>Tiranossauro Rex</h4>
+                    <p>O rei tirano dos lagartos, um predador supremo do Cretáceo.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="triceratops.png" alt="Imagem de um Triceratops">
+                    <h4>Triceratops</h4>
+                    <p>O gigante gentil com sua impressionante coroa de três chifres.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="velociraptor.png" alt="Imagem de um Velociraptor">
+                    <h4>Velociraptor</h4>
+                    <p>Caçador ágil e inteligente que caçava em bandos.</p>
+                </div>
+                 <div class="animal-item">
+                    <img src="braquiossauro.png" alt="Imagem de um Braquiossauro">
+                    <h4>Braquiossauro</h4>
+                    <p>Um dos maiores herbívoros, com seu pescoço que alcançava os céus.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="estegossauro.png" alt="Imagem de um Estegossauro">
+                    <h4>Estegossauro</h4>
+                    <p>Conhecido por suas placas ósseas nas costas e espinhos na cauda para defesa.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="pterodáctilo.png" alt="Imagem de um Pterodáctilo">
+                    <h4>Pterodáctilo</h4>
+                    <p>Um dos mais famosos répteis voadores, que dominava os céus da Era Mesozoica.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="anquilossauro.png" alt="Imagem de um Anquilossauro">
+                    <h4>Anquilossauro</h4>
+                    <p>O tanque blindado da natureza, protegido por uma armadura óssea e uma clava na cauda.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO IDADE DA PEDRA -->
+        <div id="stoneage" class="section">
+            <h2>Jornada pela Idade da Pedra</h2>
+            <p>Explore as origens da humanidade e da megafauna que dominava o mundo após a extinção dos dinossauros. Veja como nossos ancestrais sobreviveram, inovaram e prosperaram em um mundo selvagem e fascinante.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Paleolítico (Idade da Pedra Lascada)</h3>
+                    <p><strong>Período:</strong> ~2.5 milhões a 10.000 a.C.</p>
+                    <ul>
+                        <li><strong>Estilo de Vida:</strong> Caçadores-coletores nômades.</li>
+                        <li><strong>Inovações:</strong> Domínio do fogo, arte rupestre.</li>
+                        <li><strong>Ferramentas:</strong> Pedras lascadas, lanças.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Neolítico (Idade da Pedra Polida)</h3>
+                    <p><strong>Período:</strong> ~8.000 a 3.000 a.C.</p>
+                    <ul>
+                        <li><strong>Estilo de Vida:</strong> Sedentário, surgimento de aldeias.</li>
+                        <li><strong>Inovações:</strong> Revolução Agrícola, cerâmica.</li>
+                        <li><strong>Ferramentas:</strong> Pedras polidas, arados.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="animal-grid">
+                <div class="animal-item">
+                    <img src="mamute lanoso.png" alt="Imagem de um Mamute Lanoso">
+                    <h4>Mamute Lanoso</h4>
+                    <p>Gigante peludo das eras glaciais, caçado por sua carne e presas.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="tigre dentre de sabre.png" alt="Imagem de um Tigre-Dentes-de-Sabre">
+                    <h4>Tigre-Dentes-de-Sabre</h4>
+                    <p>O icônico predador com caninos que pareciam facas.</p>
+                </div>
+                <div class="animal-item">
+                    <img src="preguiça gigante.png" alt="Imagem de uma Preguiça Gigante">
+                    <h4>Preguiça Gigante</h4>
+                    <p>Um herbívoro colossal que podia ficar sobre duas patas para alcançar árvores.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SEÇÃO TECNOLOGIA -->
+        <div id="tech" class="section">
+            <h2>O Renascimento dos Gigantes</h2>
+            <p>O sonho de caminhar entre dinossauros tornou-se realidade no Dinopark graças a avanços revolucionários na engenharia genética. Nossos cientistas pioneiros desenvolveram uma tecnologia de ponta para extrair, sequenciar e reparar DNA antigo encontrado em fósseis preservados em âmbar. Ao preencher as lacunas no código genético com DNA de espécies análogas modernas, como aves e répteis, fomos capazes de recriar estas criaturas magníficas em nossos laboratórios de última geração. No Dinopark, a ciência não apenas revela o passado, ela o traz de volta à vida.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Dinopark. Todos os direitos reservados. Uma aventura construída com paixão.</p>
+    </footer>
+
+</body>
+</html>

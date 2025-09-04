@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft MakeCode - Missões com o Agente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Global Resets and Base Styles from Arcade Example */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000; /* Preto */
+            color: #FFFFFF; /* Branco (cor base do texto, missões usarão verde neon) */
+            font-family: 'Press Start 2P', cursive;
+            padding-top: 105px; /* Space for sticky header (70px * 1.5) */
+            line-height: 1.8;
+            font-size: 15px; /* Base for responsive sizing (10px * 1.5 from example) */
+        }
+
+        /* Sticky Header Navigation (Adapted from Arcade Example) */
+        .sticky-header {
+            background-color: #0D0D0D;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 5px solid #00FF00; /* Verde Neon principal */
+            box-shadow: 0 3px 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .sticky-header nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sticky-header nav ul li {
+            margin: 8px 15px;
+        }
+
+        .sticky-header nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 1.1em; /* Ajustado para caber mais itens se necessário */
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap;
+        }
+
+        .sticky-header nav ul li a:hover,
+        .sticky-header nav ul li a.active {
+            background-color: #00FF00; /* Verde Neon */
+            color: #000000; /* Preto text on hover */
+            text-shadow: 1px 1px #303030; /* Sombra discreta */
+        }
+
+        /* General Container for Content Sections (Adapted from Arcade Example) */
+        .container {
+            max-width: 1100px; /* Aumentado um pouco para conteúdo Minecraft */
+            margin: 30px auto;
+            background-color: rgba(10, 10, 10, 0.9); /* Fundo do container um pouco mais escuro */
+            padding: 30px 45px;
+            border-radius: 22px;
+            border: 3px solid #00FF00; /* Borda Verde Neon principal */
+        }
+
+        /* Headings (Adapted, main color verde neon para Minecraft) */
+        h1, h2, h3, h4 {
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px #004d00; /* Sombra Verde Escuro */
+        }
+
+        h1 { /* Título principal de cada seção */
+            color: #00FF00; /* Verde Neon */
+            text-align: center;
+            font-size: 2em; /* Ajustado */
+            margin-bottom: 45px;
+        }
+
+        h2 { /* Subtítulos de seção */
+            color: #FFFFFF; /* Branco para contraste com H1 verde */
+            font-size: 1.6em; /* Ajustado */
+            margin-top: 60px;
+            margin-bottom: 30px;
+            border-bottom: 5px dashed #00FF00; /* Verde Neon */
+            padding-bottom: 15px;
+        }
+
+        h3 { /* Títulos dos cards de missão / itens da lojinha */
+            color: #00FF00; /* Verde Neon */
+            font-size: 1.3em; /* Ajustado */
+            margin-top: 0; /* Ajuste para cards */
+            margin-bottom: 22px;
+        }
+
+        h4 { /* Títulos menores, como no painel de controle */
+            color: #FFFFFF;
+            font-size: 1.1em; /* Ajustado */
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .controls-panel h4 { /* Título específico do painel de controle */
+             color: #00FF00;
+             font-size: 1.2em;
+             margin-top:0;
+             margin-bottom: 22px;
+        }
+
+
+        p, li {
+            font-size: 1em; /* Ajustado, base é 15px do body */
+            color: #C0C0C0; /* Cinza claro para texto principal */
+        }
+        .page p, .page li { /* Texto principal dentro das seções do Minecraft */
+            color: #00FF00; /* Verde Neon */
+        }
+        .page .container p, .page .container li {  /* Texto dentro de .container nas páginas do Minecraft */
+             color: #C0C0C0; /* Cinza claro, exceto se sobrescrito */
+        }
+        .page .container h2, .page .container h3, .page .container h4,
+        .page .container strong, .page .container .points,
+        .page .container .core-blocks-title {
+            color: #00FF00; /* Força verde neon para títulos e destaques */
+        }
+        .page .container .code-example { /* Manter estilo do code-example */
+            background-color: #006400;
+            color: #FFFFFF;
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            font-family: 'Press Start 2P', cursive;
+            border: 1px solid #00FF00;
+            display: inline-block;
+            text-shadow: 1px 1px #000000;
+            margin: 0.1em 0.05em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .container ul li { /* Estilo para listas dentro do container principal */
+            background-color: rgba(20, 20, 20, 0.7);
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 8px solid #00FF00; /* Verde Neon */
+        }
+        .container ul li strong {
+            color: #FFFFFF; /* Destaque dentro da lista */
+        }
+
+
+        .points { /* Estilo para pontuação nas missões */
+            font-family: 'Press Start 2P', cursive;
+            color: #FFFF00; /* Amarelo Neon para pontos */
+            font-size: 0.9em;
+            display: block;
+            margin-top: 0.5em;
+        }
+        .mission-card .points { /* Pontos dentro dos cards de missão */
+             text-align: right;
+             margin-top: 15px;
+        }
+
+
+        hr {
+            border: 0;
+            height: 3px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #00FF00, rgba(0, 0, 0, 0));
+            margin: 60px 0;
+        }
+
+        /* Icones (Emojis) */
+        .role-icon { /* Do exemplo Arcade, pode ser adaptado se usarmos icones */
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        /* Styles for Mission Cards (Adapted for Minecraft Missions) */
+        .mission-grid { /* Usaremos mission-grid para evitar conflito com .mission-card do seu exemplo*/
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 30vw, 380px), 1fr));
+            gap: clamp(20px, 2.5vw, 30px);
+        }
+
+        .mission-card { /* Card específico para missões Minecraft */
+            background-color: rgba(20, 20, 20, 0.85); /* Um pouco mais escuro que o container */
+            margin-bottom: 0; /* Gap do grid cuida disso */
+            padding: 22px;
+            border-radius: 15px;
+            border: 2px solid #008F00; /* Verde escuro para borda sutil */
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        .mission-card:hover{
+            border-color: #00FF00;
+            box-shadow: 0 0 22px rgba(0, 255, 0, 0.4);
+        }
+
+        .mission-card h3 {
+            color: #00FF00;
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed #008F00;
+            padding-bottom: 8px;
+        }
+
+        .mission-card p {
+            font-size: 0.9em;
+            color: #C0C0C0; /* Texto descritivo mais suave */
+            margin-bottom: 10px;
+        }
+        .mission-card p strong { /* Objetivo: */
+            color: #FFFFFF; /* Branco para destaque */
+        }
+        .mission-card .core-blocks-title {
+            font-weight: bold;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            color: #39CCCC; /* Ciano */
+            font-size: 0.9em;
+        }
+         .mission-card ul {
+            padding-left: 1em; /* Indentação para lista de blocos */
+         }
+         .mission-card ul li {
+            background-color: transparent;
+            border: none;
+            padding: 2px 0;
+            margin-bottom: 2px;
+            font-size: 0.85em;
+         }
+
+
+        /* Controls Panel (Adapted from Arcade Example) */
+        .controls-panel {
+            background-color: rgba(15, 15, 15, 0.9);
+            padding: 22px;
+            margin-bottom: 45px;
+            border-radius: 15px;
+            border: 3px solid #008F00; /* Verde escuro */
+            text-align: center;
+            box-shadow: 0 0 22px rgba(0, 143, 0, 0.3);
+        }
+
+        .control-btn, .control-select {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #008F00; /* Verde escuro */
+            color: #FFFFFF;
+            border: 3px solid #000000;
+            padding: 12px 15px;
+            margin: 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.75em; /* Ajustado para Minecraft */
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+            text-shadow: none;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+        .control-btn:hover, .control-select:hover {
+            background-color: #00FF00; /* Verde Neon */
+            color: #000000;
+            box-shadow: 0 0 15px #00FF00, 0 0 6px #FFFFFF;
+            transform: translateY(-2px);
+        }
+        .control-btn.active { /* Para filtros ativos */
+            background-color: #00FF00;
+            color: #000000;
+            border-color: #FFFFFF;
+            box-shadow: 0 0 15px #00FF00;
+        }
+        .control-select.active-filter {
+            border-color: #FFFF00; /* Amarelo para indicar filtro ativo no select */
+            box-shadow: 0 0 15px #FFFF00;
+        }
+        .control-select {
+            padding: 14px 12px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        .control-group label {
+            color: #FFFFFF;
+            font-size: 0.85em;
+            margin-right: 12px;
+        }
+
+        /* Placar Styles (Adapted from Arcade Example) */
+        #placar table { /* ID específico para tabela Minecraft */
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 1em; /* Ajustado */
+        }
+        #placar th, #placar td {
+            border: 3px solid #00FF00; /* Verde Neon */
+            padding: 12px 18px; /* Ajustado */
+            text-align: left;
+        }
+        #placar th {
+            background-color: #008F00; /* Verde Escuro para header da tabela */
+            color: #000000; /* Preto */
+            font-size: 1.1em; /* Ajustado */
+        }
+        #placar td {
+            background-color: rgba(20, 20, 20, 0.7);
+            color: #00FF00; /* Verde Neon */
+        }
+        #placar .team-name { /* Classe específica */
+            color: #FFFFFF; /* Nomes das equipes em branco */
+        }
+        #placar .team-score { /* Classe específica */
+            color: #FFFF00; /* Amarelo Neon */
+            font-weight: bold;
+        }
+        #placar .team-turma { /* Classe específica */
+            font-size: 0.8em;
+            color: #AAAAAA; /* Cinza para turma */
+        }
+
+        /* Content Section Visibility */
+        .content-section {
+            display: none; /* Hidden by default */
+        }
+        .content-section.active {
+            display: block; /* Shown when active */
+        }
+
+        /* Responsive adjustments (Adapted from Arcade Example) */
+        @media (max-width: 768px) {
+            body {
+                font-size: 13.5px;
+                padding-top: 90px;
+            }
+            .sticky-header nav ul li a {
+                font-size: 1em; /* Ajustado */
+                padding: 9px 15px;
+            }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.4em; }
+            h3 { font-size: 1.2em; }
+            h4 { font-size: 1em; }
+            p, li { font-size: 0.95em; }
+            .control-btn, .control-select { font-size: 0.7em; }
+            #placar table { font-size: 0.9em; }
+            .mission-card h3 { font-size: 1.1em;}
+            .mission-card p { font-size: 0.85em;}
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+                padding-top: 130px; /* Ajustado para header potencialmente maior com quebra de linha */
+            }
+            .container {
+                padding: 22px 15px;
+            }
+            .sticky-header nav ul {
+                flex-direction: column; /* Empilha os links do menu em telas pequenas */
+            }
+            .sticky-header nav ul li {
+                 margin: 5px 0;
+            }
+            .sticky-header nav ul li a {
+                font-size: 0.9em; /* Ajustado */
+                padding: 8px 12px;
+                display: block; /* Fazem os links ocuparem a largura toda */
+                text-align: center;
+            }
+            h1 { font-size: 1.6em; }
+            h2 { font-size: 1.3em; }
+            .controls-panel { padding: 15px; }
+            .control-btn, .control-select {
+                margin: 5px;
+                padding: 9px 12px;
+                font-size: 0.65em; /* Ajustado */
+                width: calc(50% - 10px); /* Dois botões por linha no painel */
+            }
+            .controls-panel > div p { display: none; } /* Oculta texto "Mostrar/Esconder" */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="sticky-header">
+        <nav>
+            <ul>
+                <li><a href="#pagina-inicial" class="nav-link active">PÁGINA INICIAL</a></li>
+                <li><a href="#missoes" class="nav-link">MISSÕES</a></li>
+                <li><a href="#placar" class="nav-link">PLACAR</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="pagina-inicial" class="content-section active">
+        <div class="container page"> <h1><span class="role-icon">🤖</span> Minecraft MakeCode: Missões com o Agente <span class="role-icon">🏆</span></h1>
+            <p>Bem-Vindos, Agentes Programadores! Preparem-se para invadir o sistema do Minecraft e controlar seus Agentes com pura lógica de programação!</p>
+            <p>Nesta central de missões, vocês (em <strong>duplas</strong>) enfrentarão desafios de construção e automação usando MakeCode. Cada dupla terá cerca de ~<strong>25 minutos</strong> por sessão no terminal (PC).</p>
+            <p>As principais ferramentas (funções) do seu Agente serão:</p>
+            <ul>
+                <li><code class="code-example">agente mover [direção] por [número]</code></li>
+                <li><code class="code-example">agente colocar [bloco] [direção]</code></li>
+                <li><code class="code-example">agente destruir [direção]</code></li>
+            </ul>
+            <hr>
+            <h1><span class="role-icon">⚙️</span>Dicas:</h1>
+            <ul>
+                <li>Ao final do tempo de computação, saíam de sua conta no Minecraft Education e liberem o terminal para a próxima dupla.</li>
+                <li>Colaboração é a chave! Ajudem-se e compartilhem descobertas.</li>
+                <li>Não tenham medo de errar! A programação é sobre testar e aprender.</li>
+                <li>Divirtam-se construindo e explorando o poder do Agente!</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="missoes" class="content-section">
+        <div class="container page">
+            <h1><span class="role-icon">🗺️</span> Central de Missões <span class="role-icon">🎯</span></h1>
+
+            <div class="controls-panel">
+                <h4>Filtros de Missão</h4>
+                <div class="control-group">
+                    <label for="mission-group-selector">Selecionar Grupo de Missões:</label>
+                    <select id="mission-group-selector" class="control-select">
+                        <option value="all">Todas as Missões</option>
+                        <option value="iniciais">Missões Iniciais</option>
+                        <option value="intermediarias">Missões Intermediárias</option>
+                        <option value="dificeis">Missões Difíceis</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="mission-cards-container" class="mission-grid">
+                </div>
+        </div>
+    </section>
+
+    <section id="placar" class="content-section">
+        <div class="container page">
+            <h1><span class="role-icon">🏆</span> Placar das Equipes <span class="role-icon">🚀</span></h1>
+            <p>Acompanhe a ascensão das equipes na dominação da programação com Agentes!</p>
+
+            <div class="controls-panel">
+                <h4>Filtrar Placar</h4>
+                <div class="control-group">
+                    <label for="turma-selector">Selecionar Turma:</label>
+                    <select id="turma-selector" class="control-select">
+                        <option value="all">Todas as Turmas</option>
+                        <option value="7A">7A</option>
+                        <option value="7B">7B</option>
+                    </select>
+                </div>
+            </div>
+
+            <table id="placar-table">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome da Equipe</th>
+                        <th>Turma</th>
+                        <th>Pontuação Total</th>
+                    </tr>
+                </thead>
+                <tbody id="placar-tbody">
+                    </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.sticky-header .nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            function setActiveSection(targetId) {
+                contentSections.forEach(section => {
+                    section.style.display = (section.id === targetId) ? 'block' : 'none';
+                    section.classList.toggle('active', section.id === targetId);
+                });
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${targetId}`);
+                });
+                if (targetId && document.getElementById(targetId)) {
+                    window.scrollTo(0, 0);
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    if (document.getElementById(targetId)) {
+                        setActiveSection(targetId);
+                        try {
+                            history.pushState({section: targetId}, null, `#${targetId}`);
+                        } catch (err) {
+                            window.location.hash = `#${targetId}`;
+                        }
+                    }
+                });
+            });
+
+            function handleInitialLoad() {
+                let initialTargetId = 'pagina-inicial'; // Default section
+                if (window.location.hash) {
+                    const hashTarget = window.location.hash.substring(1);
+                    if (document.getElementById(hashTarget)) {
+                        initialTargetId = hashTarget;
+                    }
+                }
+                setActiveSection(initialTargetId);
+            }
+
+            handleInitialLoad();
+            window.addEventListener('popstate', (event) => {
+                let targetId = 'pagina-inicial';
+                if (event.state && event.state.section && document.getElementById(event.state.section)) {
+                    targetId = event.state.section;
+                } else if (window.location.hash) {
+                    const hashTarget = window.location.hash.substring(1);
+                    if (document.getElementById(hashTarget)) {
+                        targetId = hashTarget;
+                    }
+                }
+                setActiveSection(targetId);
+            });
+
+            // --- DADOS DAS MISSÕES MINECRAFT ---
+            const missoesMinecraft = [
+                // Grupo Iniciais (1-10)
+                { id: 1, grupo: "iniciais", titulo: "1. A Base Quadrada 🧊", pontosBase: 40, objetivo: "Programe o Agente para construir uma base quadrada sólida de 5x5 blocos no chão.", blocos: ["agente mover", "agente colocar"], dica: "Use loops para os lados e para os blocos de cada lado. Lembre-se do agente virar!", desafio: "Moldura oca (20 pontos extras)." },
+                { id: 2, grupo: "iniciais", titulo: "2. Muralha de Defesa 🛡️", pontosBase: 50, objetivo: "Construir uma muralha reta: 7 blocos de comprimento, 3 de altura.", blocos: ["agente mover", "agente colocar"], dica: "Pense em camadas. Construa uma fileira, suba, retorne ao início, repita.", desafio: "Torres de 4 blocos de altura nas pontas (25 pontos extras)." },
+                { id: 3, grupo: "iniciais", titulo: "3. Pavimentando o Caminho 🧱", pontosBase: 50, objetivo: "Cobrir uma área de grama de 4x5 com blocos, criando um caminho.", blocos: ["agente mover", "agente colocar [para baixo]"], dica: "O Agente se move e coloca o bloco onde estava a grama.", desafio: "Padrão com dois tipos de blocos (25 pontos extras)." },
+                { id: 4, grupo: "iniciais", titulo: "4. Ponte Sobre o Abismo 🌉", pontosBase: 60, objetivo: "Ponte de 1 bloco de largura e 8 de comprimento sobre um buraco.", blocos: ["agente mover", "agente colocar [para baixo]"], dica: "Coloque um bloco à frente e abaixo, depois mova o agente para cima dele.", desafio: "Corrimãos simples de 1 bloco de altura (30 pontos extras)." },
+                { id: 5, grupo: "iniciais", titulo: "5. Torre de Observação 🗼", pontosBase: 40, objetivo: "Torre simples, base 1x1, 5 blocos de altura.", blocos: ["agente mover [para cima]", "agente colocar [para baixo]"], dica: "Agente coloca bloco abaixo de si e sobe nele.", desafio: "Base 3x3, 5 de altura (30 pontos extras)." },
+                { id: 6, grupo: "iniciais", titulo: "6. O Pixel Artista 🖼️", pontosBase: 70, objetivo: "Criar uma arte pixelada simples (5x5) no chão usando dois tipos de blocos coloridos.", blocos: ["agente mover", "agente colocar", "agente definir slot ativo"], dica: "Planeje sua arte em papel quadriculado! Use agente definir slot ativo para trocar de cor.", desafio: "Arte 8x8 mais complexa (35 pontos extras)." },
+                { id: 7, grupo: "iniciais", titulo: "7. Escadaria Celestial ✨", pontosBase: 80, objetivo: "Construir uma escada reta, 1 bloco de largura, subindo 5 degraus (1x1 cada).", blocos: ["agente mover", "agente colocar"], dica: "Para cada degrau: coloque bloco, mova para cima, mova para frente.", desafio: "Escada em espiral com 5 degraus (50 pontos extras)." },
+                { id: 8, grupo: "iniciais", titulo: "8. Túnel Automatizado 🚇", pontosBase: 90, objetivo: "Cavar um túnel de 2A x 1L x 10C.", blocos: ["agente mover", "agente destruir"], dica: "Destrua à frente e acima, depois avance. Repita.", desafio: "Túnel 2x2 (largura e altura) (45 pontos extras)." },
+                { id: 9, grupo: "iniciais", titulo: "9. Canal de Irrigação 💧", pontosBase: 80, objetivo: "Cavar um canal de 1L x 1P x 7C para irrigação.", blocos: ["agente mover", "agente destruir [para baixo]"], dica: "Agente avança destruindo o bloco abaixo.", desafio: "Colocar água (com balde) no início do canal (40 pontos extras)." },
+                { id: 10, grupo: "iniciais", titulo: "10. Muralha Decorada 🎨", pontosBase: 100, objetivo: "Muralha 7L x 3A com padrão alternado de dois blocos por fileira.", blocos: ["agente mover", "agente colocar", "agente definir slot ativo"], dica: "Use loops e alterne o slot do agente.", desafio: "Padrão xadrez em parede 5x5 (50 pontos extras)." },
+                { id: 11, grupo: "intermediarias", titulo: "11. Pirâmide Egípcia (Base 5x5) 🔺", pontosBase: 110, objetivo: "Construir uma pirâmide sólida com base 5x5, diminuindo 1 bloco por camada.", blocos: ["agente mover", "agente colocar"], dica: "Pense em como o agente centraliza cada nova camada.", desafio: "Pirâmide oca por dentro (60 pontos extras)." },
+                { id: 12, grupo: "intermediarias", titulo: "12. Letra Inicial 3D (Simples)🅰️", pontosBase: 100, objetivo: "Construir a inicial do nome da dupla no chão em formato 3D (ex: 5A x 4L x 2P).", blocos: ["agente mover", "agente colocar"], dica: "Desenhe no papel primeiro. Construa camada por camada ou coluna por coluna.", desafio: "Ambas as iniciais da dupla conectadas (50 pontos extras)." },
+                { id: 13, grupo: "intermediarias", titulo: "13. Mini Labirinto (Construtor) 🗺️", pontosBase: 120, objetivo: "Agente constrói as paredes de um labirinto simples de 7x7 com um caminho da entrada à saída.", blocos: ["agente mover", "agente colocar"], dica: "Planeje o layout do labirinto em papel quadriculado. O agente pode seguir um \"plano\".", desafio: "Adicionar \"becos sem saída\" extras (40 pontos extras)." },
+                { id: 14, grupo: "intermediarias", titulo: "14. Ponte Estaiada (Visual) 🌉", pontosBase: 130, objetivo: "Construir uma ponte (12L x 1W) com \"cabos\" visuais (diagonais de blocos) partindo de 2 pilares centrais.", blocos: ["agente mover", "agente colocar"], dica: "Construa os pilares, a base da ponte, e depois adicione os \"cabos\" com cuidado.", desafio: "Ponte com 3 blocos de largura (60 pontos extras)." },
+                { id: 15, grupo: "intermediarias", titulo: "15. Limpeza Cirúrgica 💣", pontosBase: 110, objetivo: "Em uma área com blocos misturados (ex: lãs coloridas), destruir apenas um tipo específico de bloco sem danificar os outros.", blocos: ["agente mover", "agente destruir", "agente inspecionar"], dica: "Se não usar inspecionar, crie um padrão onde os blocos a serem destruídos são conhecidos.", desafio: "Substituir os blocos destruídos por outro tipo (50 pontos extras)." },
+                { id: 16, grupo: "intermediarias", titulo: "16. Jardim Secreto Simétrico 🌳", pontosBase: 110, objetivo: "Criar um padrão de jardim simétrico (8x8) usando 3 tipos de blocos (ex: caminhos, flores, arbustos).", blocos: ["agente mover", "agente colocar", "agente definir slot ativo"], dica: "A simetria é a chave. Programe um quadrante e espelhe.", desafio: "Adicionar uma pequena fonte (1x1 água cercada) no centro (40 pontos extras)." },
+                { id: 17, grupo: "intermediarias", titulo: "17. Clone Estrutural 🏠🏠", pontosBase: 140, objetivo: "Observar uma pequena estrutura 3D complexa (ex: casa com telhado diferente, chaminé) e programar o agente para replicá-la ao lado.", blocos: ["agente mover", "agente colocar"], dica: "Decomponha a estrutura original em camadas ou seções para facilitar a programação.", desafio: "Replicar com um tipo de bloco diferente, mantendo a forma (50 pontos extras)." },
+                { id: 18, grupo: "intermediarias", titulo: "18. Fosso e Fortaleza 🏰", pontosBase: 130, objetivo: "Cavar um fosso retangular (12L x 3W x 2P) e construir uma muralha (12L x 4A x 1L) em uma das bordas internas do fosso.", blocos: ["agente mover", "agente destruir", "agente colocar"], dica: "Complete a escavação antes de iniciar a muralha para facilitar o posicionamento.", desafio: "Adicionar \"torres de vigia\" 2x2x2 nos cantos da muralha (60 pontos extras)." },
+                { id: 19, grupo: "intermediarias", titulo: "19. Vila Compacta 🏘️", pontosBase: 120, objetivo: "Construir 3 tipos diferentes de casinhas simples (ex: 3x3x3, 4x3x3 com telhado inclinado simples, 3x4x3) próximas umas das outras.", blocos: ["agente mover", "agente colocar"], dica: "Crie funções (grupos de blocos) no MakeCode para cada tipo de casa.", desafio: "Conectar as casas com caminhos de 1 bloco de largura (40 pontos extras)." },
+                { id: 20, grupo: "intermediarias", titulo: "20. Cobertura de Domo Pixelado 🌐", pontosBase: 140, objetivo: "Tentar criar uma cobertura em forma de domo (aproximação pixelada) sobre uma área quadrada de 7x7.", blocos: ["agente mover", "agente colocar"], dica: "Use círculos concêntricos de blocos que diminuem de raio e aumentam em altura.", desafio: "Fazer o domo sobre uma base circular de diâmetro 7 (60 pontos extras)." },
+                { id: 21, grupo: "intermediarias", titulo: "21. Tabuleiro de Xadrez Elevado ♟️", pontosBase: 110, objetivo: "Criar um padrão xadrez 8x8 no chão, elevado 1 bloco do solo.", blocos: ["agente mover", "agente colocar", "agente definir slot ativo"], dica: "Construa uma plataforma base primeiro, depois o padrão xadrez por cima.", desafio: "Adicionar uma borda de outro material ao redor do tabuleiro (40 pontos extras)." },
+                { id: 22, grupo: "intermediarias", titulo: "22. Farol Listrado 🚦", pontosBase: 120, objetivo: "Construir uma torre cilíndrica (aproximação com base 3x3 ou 4x4) de 15 blocos de altura com listras horizontais de duas cores alternadas.", blocos: ["agente mover", "agente colocar", "agente definir slot ativo"], dica: "A cada camada ou duas, troque o slot ativo do agente para a outra cor.", desafio: "Adicionar uma \"luz\" (bloco luminoso) no topo, cercada por vidro (50 pontos extras)." },
+                { id: 23, grupo: "dificeis", titulo: "23. Escultura Abstrata Monumental 🗿", pontosBase: 160, objetivo: "Criar uma escultura 3D abstrata original usando pelo menos 50 blocos, com complexidade em todos os eixos (X, Y, Z).", blocos: ["agente mover", "agente colocar"], dica: "Esboce sua ideia. Pense em formas geométricas interconectadas.", desafio: "Usar 3 ou mais tipos de blocos na escultura (70 pontos extras)." },
+                { id: 24, grupo: "dificeis", titulo: "24. Terraplanagem Perfeita 🏞️", pontosBase: 190, objetivo: "Nivelar uma área de terreno acidentado (ex: 12x12) para uma altura Y específica, removendo blocos acima e preenchendo os abaixo.", blocos: ["agente mover", "agente destruir", "agente colocar", "agente inspecionar"], dica: "O agente precisa varrer a área, verificar a altura e agir.", desafio: "Criar um pequeno lago artificial (3x3x1) na área nivelada (80 pontos extras)." },
+                { id: 25, grupo: "dificeis", titulo: "25. Mega Labirinto Auto-Gerado 🌀", pontosBase: 220, objetivo: "Programar o agente para construir as paredes de um labirinto complexo de 15x15 com um caminho único e claro da entrada à saída.", blocos: ["agente mover", "agente colocar"], dica: "Pesquise algoritmos simples de geração de labirintos ou crie um plano detalhado.", desafio: "Labirinto com paredes de 2 blocos de altura (100 pontos extras)." },
+                { id: 26, grupo: "dificeis", titulo: "26. Drenagem de Oceano (Parcial) 🌊", pontosBase: 170, objetivo: "Escolher uma área de um lago ou oceano (ex: 10x10) e programar o agente para remover a água até uma profundidade de 3 blocos e substituir por areia/terra.", blocos: ["agente mover", "agente destruir", "agente colocar"], dica: "Trabalhe de cima para baixo, camada por camada.", desafio: "Construir uma pequena cabana na ilha criada (70 pontos extras)." },
+                { id: 27, grupo: "dificeis", titulo: "27. Logo da Equipe em Relevo 3D 🏆", pontosBase: 200, objetivo: "Criar as iniciais da dupla (ou um logo simples) em formato 3D com profundidade e detalhes (ex: 7A x 5L x 3P cada letra).", blocos: ["agente mover", "agente colocar"], dica: "Use diferentes tipos de blocos para contorno e preenchimento.", desafio: "Fazer o logo em uma parede vertical (90 pontos extras)." },
+                { id: 28, grupo: "dificeis", titulo: "28. Ponte Móvel (Estilo Medieval) 🏰🌉", pontosBase: 180, objetivo: "Construir uma ponte sobre um vão (ex: 8 blocos) que visualmente se pareça com uma ponte levadiça, com duas seções que se encontrariam no meio.", blocos: ["agente mover", "agente colocar"], dica: "Construa cada metade da ponte separadamente, subindo em direção ao centro.", desafio: "Adicionar portões (muralhas com abertura) em cada extremidade (70 pontos extras)." },
+                { id: 29, grupo: "dificeis", titulo: "29. Arte Fractal (Floco de Neve Koch 2D) ❄️", pontosBase: 240, objetivo: "Construir uma representação 2D no chão de um floco de neve de Koch (primeiras 2-3 iterações) usando blocos.", blocos: ["agente mover", "agente colocar", "agente virar"], dica: "Entenda a lógica de substituição de segmentos do fractal.", desafio: "Usar blocos azuis e brancos para o efeito de neve (80 pontos extras)." },
+                { id: 30, grupo: "dificeis", titulo: "30. Grande Aqueduto Romano 🏛️💧", pontosBase: 210, objetivo: "Construir um aqueduto elevado (mínimo 6 blocos de altura) que se estende por 20 blocos de comprimento, com arcos de sustentação e um canal no topo.", blocos: ["agente mover", "agente colocar"], dica: "Projete os arcos e pilares primeiro. O canal no topo deve ser contínuo.", desafio: "Fazer o agente colocar blocos de água no canal (100 pontos extras)." },
+                { id: 31, grupo: "dificeis", titulo: "31. Cúpula Geodésica Avançada 🌐✨", pontosBase: 260, objetivo: "Construir uma aproximação detalhada de uma cúpula geodésica (usando triângulos) sobre uma base circular de diâmetro ~10-12 blocos.", blocos: ["agente mover", "agente colocar"], dica: "Pesquise a estrutura de cúpulas geodésicas. Exige muito planejamento espacial.", desafio: "Usar vidro como principal material da cúpula (120 pontos extras)." },
+                { id: 32, grupo: "dificeis", titulo: "32. Otimização Suprema: Torre Perfeita 💻🗼", pontosBase: 300, objetivo: "Construir uma torre específica (ex: base 4x4, 12A, padrão específico). O desafio é usar o menor número possível de blocos de comando no MakeCode.", blocos: ["Todos permitidos"], dica: "Use loops aninhados, funções e truques de lógica. Clareza também conta.", desafio: "Bônus por eficiência: -10 a -50 blocos vs média = +50 a +150 pontos." }
+            ];
+
+            // --- GERAR CARDS DE MISSÃO MINECRAFT ---
+            const missionCardsContainer = document.getElementById('mission-cards-container');
+            function renderMissionCards(filterGroup = 'all') {
+                if (!missionCardsContainer) return;
+                missionCardsContainer.innerHTML = ''; // Limpa cards existentes
+                const filteredMissions = missoesMinecraft.filter(missao => filterGroup === 'all' || missao.grupo === filterGroup);
+
+                filteredMissions.forEach(missao => {
+                    const card = document.createElement('div');
+                    card.className = 'mission-card';
+                    card.dataset.groupId = missao.grupo;
+
+                    let blocosHtml = '<ul>';
+                    missao.blocos.forEach(bloco => {
+                        blocosHtml += `<li><code class="code-example">${bloco}</code></li>`;
+                    });
+                    blocosHtml += '</ul>';
+
+                    card.innerHTML = `
+                        <h3>${missao.titulo}</h3>
+                        <span class="points">Pontuação: ${missao.pontosBase}</span>
+                        <p><strong>Objetivo:</strong> ${missao.objetivo}</p>
+                        <p class="core-blocks-title">Blocos de Ação Sugeridos:</p>
+                        ${blocosHtml}
+                        <p><strong>Dica:</strong> ${missao.dica}</p>
+                        <p><strong>Desafio Extra:</strong> ${missao.desafio}</p>
+                    `;
+                    missionCardsContainer.appendChild(card);
+                });
+            }
+            
+            if (missionCardsContainer) renderMissionCards(); // Renderiza todos inicialmente
+
+            // --- FILTRO DE GRUPO DE MISSÕES MINECRAFT ---
+            const missionGroupSelector = document.getElementById('mission-group-selector');
+            if (missionGroupSelector) {
+                missionGroupSelector.addEventListener('change', (event) => {
+                    renderMissionCards(event.target.value);
+                    event.target.classList.toggle('active-filter', event.target.value !== 'all');
+                });
+            }
+
+            // --- DADOS E GERAÇÃO DO PLACAR MINECRAFT ---
+            // Array para armazenar os dados das equipes. Você pode editar os valores de 'pontuacao' aqui.
+            const placarEquipesMinecraft = [];
+            for (let i = 1; i <= 16; i++) {
+                placarEquipesMinecraft.push({ posicaoOriginal: i, nome: `Equipe A${i}`, turma: "7A", pontuacao: 0, id: `A-${i}` });
+            }
+            for (let i = 1; i <= 16; i++) {
+                placarEquipesMinecraft.push({ posicaoOriginal: i + 16, nome: `Equipe B${i}`, turma: "7B", pontuacao: 0, id: `B-${i}` });
+            }
+
+            const placarTbody = document.getElementById('placar-tbody');
+            function renderPlacar(filterTurma = 'all') {
+                if (!placarTbody) return;
+
+                const equipesFiltradas = placarEquipesMinecraft.filter(equipe => filterTurma === 'all' || equipe.turma === filterTurma);
+                
+                const equipesOrdenadas = [...equipesFiltradas].sort((a, b) => {
+                    if (b.pontuacao !== a.pontuacao) {
+                        return b.pontuacao - a.pontuacao;
+                    }
+                    return a.posicaoOriginal - b.posicaoOriginal;
+                });
+
+                placarTbody.innerHTML = '';
+                let displayedPosition = 1;
+                equipesOrdenadas.forEach(equipe => {
+                    const row = document.createElement('tr');
+                    row.dataset.turmaOriginal = equipe.turma;
+                    row.innerHTML = `
+                        <td>${displayedPosition++}</td>
+                        <td class="team-name">${equipe.nome}</td>
+                        <td class="team-turma">${equipe.turma}</td>
+                        <td class="team-score" id="pontos-${equipe.id}">${equipe.pontuacao}</td>
+                    `;
+                    placarTbody.appendChild(row);
+                });
+            }
+            
+            if (placarTbody) renderPlacar(); // Renderiza todos inicialmente
+
+            // --- FILTRO DE TURMA PLACAR MINECRAFT ---
+            const turmaSelectorMc = document.getElementById('turma-selector');
+            if (turmaSelectorMc) {
+                turmaSelectorMc.addEventListener('change', (event) => {
+                    renderPlacar(event.target.value);
+                    event.target.classList.toggle('active-filter', event.target.value !== 'all');
+                });
+            }
+
+            // Exemplo de como você (professor) pode atualizar os pontos diretamente no array e re-renderizar:
+            // Para dar 150 pontos para a Equipe A1:
+            // 
+            // const equipeA1 = placarEquipesMinecraft.find(e => e.id === 'A-1');
+            // if (equipeA1) equipeA1.pontuacao = 150;
+            // renderPlacar(turmaSelectorMc ? turmaSelectorMc.value : 'all'); // Re-renderiza com o filtro atual
+           // const equipeA1 = placarEquipesMinecraft.find(e => e.id === 'A-1');
+           // if (equipeA1) equipeA1.pontuacao = 150;
+           // renderPlacar(turmaSelectorMc ? turmaSelectorMc.value : 'all'); 
+           // const equipeB5 = placarEquipesMinecraft.find(e => e.id === 'B-5');
+           // if (equipeB5) equipeB5.pontuacao = 250;
+           // renderPlacar(turmaSelectorMc ? turmaSelectorMc.value : 'all');
+
+            // const equipeB5 = placarEquipesMinecraft.find(e => e.id === 'B-5');
+            // if (equipeB5) equipeB5.pontuacao = 300;
+            // renderPlacar(turmaSelectorMc ? turmaSelectorMc.value : 'all'); // Re-renderiza com o filtro atual
+
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viagens para a Lua - Sua Aventura Pixelada Começa!</title>
+    <!-- Carregando Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregando a fonte do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados para complementar o Tailwind */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000000;
+            color: #FFFFFF;
+            overflow-x: hidden; /* Previne scroll horizontal */
+            background-image:
+                radial-gradient(white, rgba(255,255,255,0) 0.5px),
+                radial-gradient(white, rgba(255,255,255,0) 0.5px);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+            animation: star-field 60s linear infinite;
+        }
+
+        @keyframes star-field {
+            from { background-position: 0 0, 25px 25px; }
+            to { background-position: -1000px 500px, -975px 475px; }
+        }
+
+        /* Efeito de glitch para títulos */
+        .glitch {
+            position: relative;
+            text-shadow:
+                0.05em 0 0 #00fffc,
+                -0.025em -0.05em 0 #fc00ff,
+                0.025em 0.05em 0 #fffc00;
+            animation: glitch 500ms infinite;
+        }
+
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .glitch span:first-child {
+            animation: glitch 650ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            transform: translate(-0.025em, -0.0125em);
+            opacity: 0.8;
+        }
+
+        .glitch span:last-child {
+            animation: glitch 375ms infinite;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+            transform: translate(0.0125em, 0.025em);
+            opacity: 0.8;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.05em 0 #fc00ff, 0.025em 0.05em 0 #fffc00; }
+            15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.05em 0 #fc00ff, 0.025em 0.05em 0 #fffc00; }
+            16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.05em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.05em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            50% { text-shadow: 0.05em 0.025em 0 #00fffc, 0.05em -0.05em 0 #fc00ff, 0 -0.05em 0 #fffc00; }
+            99% { text-shadow: 0.05em 0.025em 0 #00fffc, 0.05em -0.05em 0 #fc00ff, 0 -0.05em 0 #fffc00; }
+            100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.05em 0 #fc00ff, -0.0125em -0.025em 0 #fffc00; }
+        }
+
+        /* Estilizando a scrollbar para um visual retro */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background-color: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #8A2BE2;
+            border: 2px solid #FFFF00;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #000;
+            border: 1px solid #00FF00;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
+    <header class="text-center py-10 border-b-4 border-green-400" style="background-color: #1a0033;">
+        <h1 class="text-4xl md:text-6xl font-bold text-yellow-300 glitch">
+            <span>AVENTURA LUNAR</span>
+            AVENTURA LUNAR
+            <span>AVENTURA LUNAR</span>
+        </h1>
+        <p class="mt-4 text-lg text-gray-300 tracking-wider">SUA JORNADA FORA DESTE MUNDO COMEÇA AGORA</p>
+    </header>
+
+    <!-- Hero Section com Imagem -->
+    <section id="home" class="text-center my-12 container mx-auto px-4">
+        <h2 class="text-3xl text-green-400 mb-6">BEM-VINDO AO FUTURO DAS VIAGENS ESPACIAIS</h2>
+        <div class="h-96 bg-black border-4 border-purple-600 rounded-lg overflow-hidden flex items-center justify-center">
+             <img src="hero-vista-lunar.jpg" alt="Vista da Terra a partir de uma base lunar em estilo pixel art" class="w-full h-full object-contain">
+        </div>
+        <p class="mt-6 max-w-3xl mx-auto text-base leading-relaxed">
+            Em 2100, a fronteira final não é mais um sonho. A Viagens para a Lua Ltda. oferece pacotes exclusivos para você pisar na poeira lunar, testemunhar a Terra nascendo no horizonte e criar memórias que ecoarão pela galáxia.
+        </p>
+    </section>
+
+    <div class="container mx-auto px-4">
+
+        <!-- Seção de Pacotes -->
+        <section id="pacotes" class="my-16">
+            <h2 class="text-3xl text-center text-green-400 mb-10 border-b-2 border-yellow-300 pb-2 inline-block">PACOTES EXCLUSIVOS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card Pacote 1 -->
+                <div class="bg-black border-2 border-purple-600 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl hover:shadow-blue-500/50 flex flex-col">
+                    <div class="h-48 bg-black rounded mb-4 overflow-hidden flex items-center justify-center">
+                        <img src="pacote-descoberta.jpg" alt="[Imagem de um astronauta na lua]" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl text-yellow-300 mb-3">Pacote Descoberta</h3>
+                        <ul class="text-sm space-y-2 mb-4">
+                            <li>&#x23F0; 5 Dias (3 na superfície)</li>
+                            <li>&#x1F6F0;&#xFE0F; Nave: "Apolo 2100"</li>
+                            <li>&#x1F3D8;&#xFE0F; Hospedagem: Hotel Orbital</li>
+                            <li>&#x1F5FA;&#xFE0F; Atividade: Caminhada Guiada</li>
+                        </ul>
+                    </div>
+                    <div class="text-lg text-green-400 font-bold mt-auto">$2.5M GSC</div>
+                </div>
+                <!-- Card Pacote 2 -->
+                <div class="bg-black border-2 border-purple-600 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl hover:shadow-blue-500/50 flex flex-col">
+                    <div class="h-48 bg-black rounded mb-4 overflow-hidden flex items-center justify-center">
+                        <img src="pacote-imersao.jpg" alt="[Imagem de um rover lunar]" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl text-yellow-300 mb-3">Imersão Tranquilidade</h3>
+                        <ul class="text-sm space-y-2 mb-4">
+                            <li>&#x23F0; 7 Dias (5 na superfície)</li>
+                            <li>&#x1F6F0;&#xFE0F; Nave: "Orion III"</li>
+                            <li>&#x1F3D8;&#xFE0F; Hospedagem: Hotel Subterrâneo</li>
+                            <li>&#x1F5FA;&#xFE0F; Atividade: Expedição de Rover</li>
+                        </ul>
+                    </div>
+                    <div class="text-lg text-green-400 font-bold mt-auto">$4.0M GSC</div>
+                </div>
+                <!-- Card Pacote 3 -->
+                <div class="bg-black border-2 border-purple-600 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl hover:shadow-blue-500/50 flex flex-col">
+                    <div class="h-48 bg-black rounded mb-4 overflow-hidden flex items-center justify-center">
+                        <img src="pacote-luxo.jpg" alt="[Imagem de um resort de luxo na lua]" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl text-yellow-300 mb-3">Luxo: Visão da Terra</h3>
+                        <ul class="text-sm space-y-2 mb-4">
+                            <li>&#x23F0; 10 Dias (7 na superfície)</li>
+                            <li>&#x1F6F0;&#xFE0F; Transporte: Jato Privado</li>
+                            <li>&#x1F3D8;&#xFE0F; Hospedagem: Resort "Terra Nova"</li>
+                            <li>&#x1F5FA;&#xFE0F; Atividade: Voo de Balão Lunar</li>
+                        </ul>
+                    </div>
+                    <div class="text-lg text-green-400 font-bold mt-auto">$8.0M GSC</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Galeria -->
+        <section id="galeria" class="my-16">
+            <h2 class="text-3xl text-center text-green-400 mb-10 border-b-2 border-yellow-300 pb-2 inline-block">GALERIA DA MISSÃO</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="h-48 bg-black border-2 border-blue-500 rounded overflow-hidden flex items-center justify-center">
+                    <img src="galeria-decolagem-nave.jpg" alt="[Imagem de uma nave decolando]" class="w-full h-full object-contain">
+                </div>
+                <div class="h-48 bg-black border-2 border-blue-500 rounded overflow-hidden flex items-center justify-center">
+                     <img src="galeria-jantar-gravidade-zero.jpg" alt="[Imagem de um jantar em gravidade zero]" class="w-full h-full object-contain">
+                </div>
+                <div class="h-48 bg-black border-2 border-blue-500 rounded overflow-hidden flex items-center justify-center">
+                     <img src="galeria-coleta-rochas.jpg" alt="[Imagem de um astronauta coletando rochas]" class="w-full h-full object-contain">
+                </div>
+                <div class="h-48 bg-black border-2 border-blue-500 rounded overflow-hidden flex items-center justify-center">
+                     <img src="galeria-vista-cratera.jpg" alt="[Imagem de uma vista de uma cratera lunar]" class="w-full h-full object-contain">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA e Contato -->
+        <section id="contato" class="my-16 text-center">
+            <h2 class="text-3xl text-yellow-300 mb-6">PRONTO PARA A DECOLAGEM?</h2>
+            <p class="mb-8 max-w-2xl mx-auto">Nossos especialistas estão prontos para te guiar nesta jornada única. Contate-nos para garantir seu lugar na história.</p>
+            <a href="#" class="inline-block bg-green-500 text-black py-4 px-8 rounded-md text-lg font-bold transform hover:scale-110 hover:bg-yellow-300 transition-all duration-300">
+                &#x1F680; RESERVE SUA VIAGEM AGORA! &#x1F680;
+            </a>
+            <div class="mt-10 pt-8 border-t-2 border-purple-500">
+                <p class="mb-2">&#x1F4E7; <a href="7ano-sesi342@viagenspralua.com" class="hover:text-yellow-300">7ano-sesi342@viagenspralua.com</a></p>
+                <p>&#x260E;&#xFE0F; Telefone: +55 (16) 9999-1234 (Canal Interplanetário 24h)</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-12 border-t-4 border-green-400" style="background-color: #1a0033;">
+        <p class="text-sm text-gray-400">&copy; 2100 Viagens para a Lua Ltda. Direitos Reservados na Via Láctea.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção A: Projeto de Automação Simples e Funcional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="font-bold text-gray-900">Guia Opção A: Projeto de Automação Simples e Funcional</h1>
+            <p class="mt-2">Detalhes para o seu projeto de automação com Arduino.</p>
+        </header>
+
+        <main class="rounded-2xl shadow-lg p-6 md:p-10">
+            <section>
+                <h2 class="section-heading">Guia Detalhado: Opção A - Projeto de Automação Simples e Funcional</h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">Este guia serve como um modelo para o seu relatório de projeto. Preencha cada seção com as informações específicas do seu trabalho.</p>
+
+                <h3 class="subsection-heading">1. Título do Projeto</h3>
+                <p class="text-gray-700 mb-4">Crie um título claro e descritivo para o seu projeto. Ex: "Sistema de Iluminação Automática com Sensor de Presença".</p>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Seu Título Aqui]</p>
+
+                <h3 class="subsection-heading">2. Introdução</h3>
+                <p class="text-gray-700 mb-4">Descreva brevemente o problema que seu projeto busca resolver e a importância da automação residencial nesse contexto. Apresente o objetivo principal do seu protótipo.</p>
+                <ul class="roman-list">
+                    <li><strong>Problema:</strong> Qual situação ou necessidade seu projeto aborda?</li>
+                    <li><strong>Objetivo:</strong> O que seu protótipo fará? Qual a sua função principal?</li>
+                </ul>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Sua Introdução Aqui]</p>
+
+                <h3 class="subsection-heading">3. Componentes Utilizados</h3>
+                <p class="text-gray-700 mb-4">Liste todos os componentes eletrônicos e materiais que você utilizou no seu projeto. Para cada componente, explique brevemente sua função.</p>
+                <ul class="roman-list">
+                    <li><strong>Arduino (Modelo):</strong> Ex: Arduino UNO - Placa controladora principal.</li>
+                    <li><strong>Sensor (Tipo e Modelo):</strong> Ex: LDR - Detecta a intensidade da luz.</li>
+                    <li><strong>Atuador (Tipo e Modelo):</strong> Ex: LED - Emite luz.</li>
+                    <li><strong>Outros Componentes:</strong> Ex: Resistor, Protoboard, Fios.</li>
+                </ul>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Sua Lista de Componentes e Funções Aqui]</p>
+
+                <h3 class="subsection-heading">4. Diagrama do Circuito</h3>
+                <p class="text-gray-700 mb-4">Inclua um diagrama claro do seu circuito. Você pode desenhá-lo à mão (e tirar uma foto) ou usar um software (ex: Tinkercad Circuits, Fritzing). Certifique-se de que todas as conexões estejam visíveis e corretas.</p>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Insira seu Diagrama do Circuito Aqui (pode ser uma imagem ou descrição detalhada)]</p>
+
+                <h3 class="subsection-heading">5. Código (Sketch)</h3>
+                <p class="text-gray-700 mb-4">Apresente o código que você carregou no Arduino. É fundamental que o código esteja bem comentado, explicando cada parte e sua função. Use blocos de código para formatar.</p>
+                <pre class="bg-gray-100 p-4 rounded-lg text-sm overflow-x-auto mb-6"><code>
+// Exemplo de Código Arduino
+void setup() {
+  // Inicialização de pinos e comunicação serial
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  // Lógica principal do programa
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}
+                </code></pre>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Seu Código Arduino Comentado Aqui]</p>
+
+                <h3 class="subsection-heading">6. Funcionamento do Projeto</h3>
+                <p class="text-gray-700 mb-4">Explique detalhadamente como seu protótipo funciona. Descreva o fluxo de informações desde o sensor até o atuador. O que acontece quando o sensor detecta algo? Como o Arduino processa essa informação? O que o atuador faz em resposta?</p>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Explicação Detalhada do Funcionamento Aqui]</p>
+
+                <h3 class="subsection-heading">7. Desafios Encontrados e Soluções</h3>
+                <p class="text-gray-700 mb-4">Todo projeto tem seus desafios! Descreva as dificuldades que você encontrou durante o desenvolvimento (ex: erro no código, problema na montagem, componente que não funcionou) e como você as resolveu.</p>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Descreva seus Desafios e Soluções Aqui]</p>
+
+                <h3 class="subsection-heading">8. Conclusão</h3>
+                <p class="text-gray-700 mb-4">Resuma o que você aprendeu com o projeto. O objetivo foi alcançado? Quais foram os principais aprendizados? Você faria algo diferente se fosse começar de novo?</p>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Sua Conclusão Aqui]</p>
+
+                <h3 class="subsection-heading">9. Referências (Opcional)</h3>
+                <p class="text-gray-700 mb-4">Liste quaisquer sites, livros, vídeos ou outras fontes que você utilizou para pesquisar ou aprender sobre os componentes e o código.</p>
+                <ul class="roman-list">
+                    <li>Ex: Site Arduino Oficial: <a href="https://www.arduino.cc" target="_blank" class="text-blue-600 hover:underline">www.arduino.cc</a></li>
+                    <li>Ex: Vídeo "Primeiros Passos com Arduino" no YouTube.</li>
+                </ul>
+                <p class="text-base md:text-lg leading-relaxed mb-6">[Suas Referências Aqui]</p>
+            </section>
+
+            <div class="mt-8 text-center">
+                <a href="index.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
+                    Voltar para a Página Principal
+                </a>
+            </div>
+        </main>
+
+        <footer class="text-center mt-10 pb-4">
+            <p class="text-sm">Roteiro de Pesquisa - Programação e Robótica 7º Ano</p>
+            <p class="text-sm">Explorando o mundo da automação com criatividade e tecnologia.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

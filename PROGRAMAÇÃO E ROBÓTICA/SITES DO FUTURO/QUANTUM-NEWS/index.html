@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum News - O Futuro Agora</title>
+    
+    <!-- Tailwind CSS for modern layout and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for a clean, futuristic look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for the high-contrast futuristic theme */
+        body {
+            background-color: #050810; /* Darker, richer navy blue */
+            color: #e0e0e0; 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Gradient text for main title */
+        .gradient-title {
+            background: linear-gradient(90deg, #00A3FF, #9E00FF, #FF33A8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Glassmorphism effect for cards - more subtle */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.5); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 163, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 163, 255, 0.15);
+        }
+        
+        /* Solid colors for categories */
+        .category-tag {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #050810;
+        }
+        .cat-blue { background-color: #00A3FF; }
+        .cat-purple { background-color: #8A2BE2; }
+        .cat-green { background-color: #00F5D4; }
+        .cat-orange { background-color: #FF7A00; }
+        .cat-pink { background-color: #FF33A8; }
+        .cat-cyan { background-color: #0AF5F4; }
+
+
+        /* Custom scrollbar for a more thematic feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050810; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #00A3FF, #8A2BE2); border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Container for the entire page -->
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter gradient-title">QUANTUM NEWS</h1>
+            <p class="text-lg md:text-xl text-gray-400 mt-2">A Realidade de Amanhã, Hoje.</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Featured Story (spans 2 columns on large screens) -->
+            <article class="lg:col-span-2 glass-card rounded-2xl overflow-hidden group">
+                <!-- Use local image path -->
+                <img src="contato-kepler.webp" 
+                     alt="Representação artística de um sinal sendo recebido do espaço profundo" 
+                     class="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6 md:p-8">
+                    <span class="category-tag cat-blue mb-3 inline-block">PRIMEIRO CONTATO</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Contato Confirmado: Sinais Inteligentes da Constelação Kepler-186f São Decodificados</h2>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Após meses de análise intensiva pela Rede Global de Rádio-Telescópios, cientistas da Astro-Aliança confirmaram a natureza inteligente de uma série de transmissões complexas originadas do sistema Kepler-186f. A mensagem, que contém padrões matemáticos e estruturas químicas, é a primeira prova irrefutável de vida senciente fora da Terra.
+                    </p>
+                    <p class="text-xs text-gray-500">Publicado: 21 DE OUTUBRO DE 2077, 08:00 GTM</p>
+                </div>
+            </article>
+
+            <!-- Sidebar with secondary stories -->
+            <div class="flex flex-col gap-8">
+                <!-- Secondary Story 1 -->
+                <article class="glass-card rounded-2xl overflow-hidden group">
+                    <img src="interface-cerebro.webp" 
+                         alt="Visualização de uma rede neural brilhante conectada a um cérebro humano" 
+                         class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <span class="category-tag cat-purple mb-3 inline-block">TECNOLOGIA</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Neuralink Lança 'Mind-Stream', Permitindo Compartilhamento de Pensamentos</h3>
+                        <p class="text-xs text-gray-500 mt-3">Publicado: 21 DE OUTUBRO DE 2077, 11:30 GTM</p>
+                    </div>
+                </article>
+
+                <!-- Secondary Story 2 -->
+                <article class="glass-card rounded-2xl overflow-hidden group">
+                    <img src="colonia-marte.webp" 
+                         alt="Domo geodésico em uma paisagem marciana" 
+                         class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <span class="category-tag cat-cyan mb-3 inline-block">EXPLORAÇÃO ESPACIAL</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Colônia de Marte Atinge Autossuficiência Energética</h3>
+                        <p class="text-xs text-gray-500 mt-3">Publicado: 20 DE OUTUBRO DE 2077, 18:45 GTM</p>
+                    </div>
+                </article>
+            </div>
+        </main>
+        
+        <!-- More Stories Section -->
+        <section class="mt-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-white">Mais Notícias Quânticas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="glass-card rounded-2xl overflow-hidden group">
+                    <img src="cura-genetica.webp" alt="Imagem de uma hélice de DNA sendo reparada" class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <span class="category-tag cat-green mb-3 inline-block">BIOTECNOLOGIA</span>
+                        <h3 class="text-xl font-bold text-white mb-2">CRISPR-IX Erradica Doenças Hereditárias</h3>
+                    </div>
+                </article>
+                <article class="glass-card rounded-2xl overflow-hidden group">
+                     <img src="drones-amazonia.webp" alt="Esquadrão de drones sobrevoando uma floresta densa" class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <span class="category-tag cat-pink mb-3 inline-block">MEIO AMBIENTE</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Amazônia Revitalizada: Drones IA Superam Metas</h3>
+                    </div>
+                </article>
+                <article class="glass-card rounded-2xl overflow-hidden group">
+                     <img src="computador-quantico.webp" alt="Visualização de um processador quântico brilhante" class="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <span class="category-tag cat-orange mb-3 inline-block">COMPUTAÇÃO</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Supremacia Quântica Atingida</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="text-center mt-16 pt-8 border-t border-gray-800">
+            <p class="text-gray-500">&copy; 2077 Quantum News Network. Todos os direitos reservados na cronoesfera.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

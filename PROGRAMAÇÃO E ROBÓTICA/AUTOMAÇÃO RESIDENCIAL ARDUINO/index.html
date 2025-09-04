@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro de Pesquisa: Automação Residencial com Arduino</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="font-bold text-gray-900">Roteiro de Pesquisa: Automação Residencial com Arduino</h1>
+            <p class="mt-2">Construindo o Futuro Inteligente: Da Teoria à Prática com o Arduino</p>
+        </header>
+
+        <main class="rounded-2xl shadow-lg p-6 md:p-10">
+
+            <!-- Introduction -->
+            <section id="introducao">
+                <h2 class="section-heading">Introdução</h2>
+                <p class="text-base md:text-lg leading-relaxed">
+                    Você já imaginou uma casa que acende as luzes quando você entra, ajusta a temperatura automaticamente ou te avisa quando a porta está aberta? Bem-vindos ao mundo da <strong>Automação Residencial</strong>, onde a tecnologia torna nossas casas mais inteligentes, confortáveis e seguras!
+                </p>
+                <p class="text-base md:text-lg leading-relaxed mt-3">
+                    Neste roteiro de pesquisa, vamos explorar como a automação funciona e como o <strong>Arduino</strong>, uma plataforma eletrônica de código aberto, pode ser a ferramenta perfeita para você começar a construir suas próprias soluções inteligentes. Prepare-se para entender os conceitos, conhecer os componentes e colocar a mão na massa para criar o futuro!
+                </p>
+                <blockquote>
+                    "A automação residencial não é apenas sobre conveniência, mas sobre transformar a maneira como interagimos com nossos espaços, tornando-os mais eficientes e responsivos às nossas necessidades."
+                </blockquote>
+            </section>
+
+            <!-- Etapa 1: Fundamentos da Automação Residencial -->
+            <section id="etapa1" class="mt-8">
+                <h2 class="section-heading">Etapa 1: Desvendando a Casa Inteligente: Conceitos Fundamentais da Automação Residencial</h2>
+                <p class="mb-4 text-base md:text-lg">Para começar nossa jornada, vamos entender o que é automação residencial e quais são os elementos que a compõem.</p>
+                
+                <h3 class="subsection-heading">O que é Automação Residencial?</h3>
+                <ul class="decimal-list"><li>Defina automação residencial com suas próprias palavras e dê três exemplos práticos de sistemas que você já viu ou ouviu falar (ex: iluminação inteligente, termostatos programáveis, fechaduras eletrônicas).</li>
+                    <li>Pesquise brevemente sobre a história da automação residencial: quando e como ela começou a se desenvolver?</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">Componentes Essenciais de um Sistema de Automação</h3>
+                <p class="mb-4 text-base md:text-lg">Todo sistema inteligente é composto por diferentes partes que trabalham juntas. Pesquise sobre os seguintes componentes:</p>
+                <ul class="decimal-list"><li><strong>Sensores:</strong> O que são e qual sua função? Dê exemplos de sensores comuns em automação (ex: sensor de luz LDR, sensor de movimento PIR, sensor de temperatura DHT11, sensor de distância ultrassônico) e explique o que cada um mede.</li>
+                    <li><strong>Atuadores:</strong> O que são e qual sua função? Dê exemplos de atuadores (ex: LEDs, relés para controlar lâmpadas, motores) e explique o que cada um faz.</li>
+                    <li><strong>Controladores:</strong> Qual o papel do controlador (como o Arduino) em um sistema de automação? Como ele conecta sensores e atuadores?</li>
+                    <li><strong>Conectividade:</strong> Como os dispositivos de uma casa inteligente se comunicam entre si e com você? Pesquise sobre Wi-Fi, Bluetooth e outros protocolos (ex: Zigbee, Z-Wave).</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">Benefícios e Desafios da Automação</h3>
+                <ul class="decimal-list"><li>Quais são as principais vantagens de ter uma casa automatizada (conforto, segurança, economia de energia, acessibilidade)? Dê um exemplo para cada vantagem.</li>
+                    <li>Quais são os possíveis desafios ou desvantagens da automação residencial (custo, privacidade de dados, segurança cibernética, complexidade da instalação)?</li>
+                </ul>
+            </section>
+
+            <!-- Etapa 2: Introdução ao Arduino -->
+            <section id="etapa2" class="mt-8">
+                <h2 class="section-heading">Etapa 2: Arduino: A Plataforma para Criar o Futuro</h2>
+                <p class="mb-4 text-base md:text-lg">O Arduino é a ferramenta que vamos usar para dar vida às nossas ideias de automação. Vamos conhecê-lo melhor!</p>
+
+                <h3 class="subsection-heading">O que é o Arduino?</h3>
+                <ul class="decimal-list"><li>Defina o Arduino como uma plataforma de prototipagem eletrônica. Por que ele é considerado "de código aberto"?</li>
+                    <li>Qual a importância do Arduino para iniciantes e para o movimento "maker"?</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">Anatomia da Placa Arduino UNO</h3>
+                <p class="mb-4 text-base md:text-lg">A placa Arduino UNO é a mais comum para quem está começando. Pesquise e identifique as seguintes partes:</p>
+                <ul class="decimal-list"><li><strong>Microcontrolador (o "cérebro"):</strong> Qual o nome do chip principal do Arduino UNO?</li>
+                    <li><strong>Pinos Digitais (Entrada/Saída):</strong> Para que servem? Quantos existem no Arduino UNO?</li>
+                    <li><strong>Pinos Analógicos:</strong> Para que servem? Quantos existem no Arduino UNO?</li>
+                    <li><strong>Pinos de Alimentação (5V, 3.3V, GND):</strong> Qual a função de cada um?</li>
+                    <li><strong>Porta USB:</strong> Para que é utilizada?</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">O Ambiente de Desenvolvimento Integrado (IDE) do Arduino</h3>
+                <ul class="decimal-list"><li>Onde você pode baixar o software (IDE) do Arduino?</li>
+                    <li>Qual a estrutura básica de um programa (chamado "sketch") no Arduino? Explique as funções `setup()` e `loop()`.</li>
+                    <li>Qual a linguagem de programação utilizada no Arduino?</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">A Protoboard (Matriz de Contatos)</h3>
+                <ul class="decimal-list"><li>O que é uma protoboard e por que ela é essencial para montar circuitos eletrônicos sem precisar soldar?</li>
+                    <li>Como os furos de uma protoboard são conectados internamente? Faça um pequeno desenho ou descreva a conexão das linhas e colunas.</li>
+                </ul>
+            </section>
+
+            <!-- Etapa 3: Primeiros Circuitos e Códigos -->
+            <section id="etapa3" class="mt-8">
+                <h2 class="section-heading">Etapa 3: Primeiros Circuitos e Códigos: Acendendo Ideias com o Arduino</h2>
+                <p class="mb-4 text-base md:text-lg">Chegou a hora de colocar a mão na massa! Vamos aprender a montar circuitos básicos e a escrever os primeiros códigos.</p>
+
+                <h3 class="subsection-heading">Circuito Básico: Controlando um LED</h3>
+                <ul class="decimal-list"><li>Explique o que é um LED e por que ele precisa de um resistor quando conectado ao Arduino.</li>
+                    <li>Desenhe um diagrama simples de como conectar um LED ao Arduino (com resistor).</li>
+                    <li>Pesquise o código "blink" (piscar LED) no Arduino IDE. Explique as funções `pinMode()`, `digitalWrite()` e `delay()` usadas nesse código.</li>
+                    <li><strong>Atividade Prática Sugerida:</strong> Se possível, monte este circuito e carregue o código para ver o LED piscar!</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">Lendo Entradas: Botões e Sensores Simples</h3>
+                <ul class="decimal-list"><li><strong>Botão:</strong> Como um botão pode ser usado para enviar um sinal (ligado/desligado) para o Arduino? Pesquise sobre resistores de "pull-up" e "pull-down" e por que eles são importantes ao usar botões.</li>
+                    <li><strong>Sensor de Luz (LDR):</strong> O que é um LDR e como ele funciona? Desenhe um diagrama de como conectar um LDR ao Arduino para ler a intensidade da luz.</li>
+                    <li>Qual a diferença entre `digitalRead()` e `analogRead()` no Arduino? Dê um exemplo de quando usar cada um.</li>
+                    <li><strong>Atividade Prática Sugerida:</strong> Escolha um dos circuitos (botão ou LDR) e tente montá-lo, escrevendo um código simples para ler o valor e exibir no Monitor Serial.</li>
+                </ul>
+
+                <h3 class="subsection-heading mt-6">Comunicação Serial: Conversando com o Arduino</h3>
+                <ul class="decimal-list"><li>Para que serve a comunicação serial no Arduino? Como ela nos ajuda a "ver" o que o Arduino está lendo ou fazendo?</li>
+                    <li>Pesquise as funções `Serial.begin()` e `Serial.print()`. Explique o que cada uma faz.</li>
+                    <li><strong>Atividade Prática Sugerida:</strong> Modifique o código do LDR (ou de outro sensor) para enviar os valores lidos para o Monitor Serial do Arduino IDE. Observe como os valores mudam com a luz.</li>
+                </ul>
+            </section>
+
+            <!-- Etapa 4: O Produto Final -->
+            <section id="etapa4" class="mt-10 bg-blue-50 border-2 border-blue-500 rounded-lg p-6">
+                <h2 class="section-heading">Etapa 4: O Produto Final - Construindo Soluções Inteligentes</h2>
+                <p class="mb-4 text-base md:text-lg text-gray-700">Com base em sua pesquisa e nos conhecimentos adquiridos, chegou a hora de demonstrar seu aprendizado! Em grupo, vocês deverão escolher, desenvolver e apresentar um dos seguintes produtos:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <a href="guide_option_a.html" class="product-option block">
+                        <h3 class="product-option-heading">Opção A: Projeto de Automação Simples e Funcional</h3>
+                        <p class="text-gray-600 mt-1">Desenvolva e construa um protótipo funcional de um sistema de automação residencial simples utilizando o Arduino. O projeto deve ser capaz de realizar uma tarefa específica de automação.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+                            <li><strong>Sugestões:</strong> Luz noturna automática (com LDR), alarme de porta/janela (com botão ou sensor magnético), controle de temperatura básico (com DHT11 e LED/ventilador).</li>
+                            <li><strong>Entrega:</strong> Protótipo funcionando, diagrama do circuito (desenho ou software), código comentado e um breve relatório (1 página) explicando o funcionamento, os componentes utilizados e os desafios encontrados.</li>
+                        </ul>
+                    </a>
+                    <a href="guide_option_b.html" class="product-option block">
+                        <h3 class="product-option-heading">Opção B: Proposta Detalhada de um Sistema de Casa Inteligente</h3>
+                        <p class="text-gray-600 mt-1">Projete um sistema de automação residencial mais complexo e inovador. Não é necessário construir, mas a proposta deve ser detalhada e tecnicamente viável.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+                            <li><strong>Sugestões:</strong> Sistema de irrigação inteligente para jardim, alimentador automático de pets, sistema de segurança residencial com múltiplos sensores.</li>
+                            <li><strong>Entrega:</strong> Documento detalhado (2-3 páginas) contendo: problema a ser resolvido, solução proposta, lista de componentes necessários (com justificativa), diagrama de blocos do sistema (fluxo de dados e controle), pseudocódigo ou fluxograma da lógica de programação e considerações sobre segurança/privacidade.</li>
+                        </ul>
+                    </a>
+                    <a href="guide_option_c.html" class="product-option block">
+                        <h3 class="product-option-heading">Opção C: Artigo de Divulgação Científica: O Impacto da Automação</h3>
+                        <p class="text-gray-600 mt-1">Elabore um artigo (2-3 páginas) sobre um aspecto específico da automação residencial, explorando seu impacto na sociedade, economia ou meio ambiente.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+                            <li><strong>Tópicos Sugeridos:</strong> "A Automação Residencial e a Economia de Energia: Mitos e Verdades", "Segurança e Privacidade na Casa Conectada: Desafios e Soluções", "Automação para Acessibilidade: Como a Tecnologia Ajuda Pessoas com Necessidades Especiais."</li>
+                            <li><strong>Entrega:</strong> Artigo bem pesquisado, com introdução, desenvolvimento (com argumentos e exemplos), conclusão e lista de referências (sites, livros, vídeos).</li>
+                        </ul>
+                    </a>
+                     <a href="guide_option_d.html" class="product-option block">
+                        <h3 class="product-option-heading">Opção D: Seminário Interativo: Demonstração e Explicação</h3>
+                        <p class="text-gray-600 mt-1">Prepare uma apresentação (10-15 minutos) para a turma, demonstrando um conceito ou um pequeno projeto de automação com Arduino.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+                            <li><strong>Sugestões:</strong> Demonstrar o circuito "blink" e explicar o código passo a passo; explicar como um sensor específico (ex: ultrassônico) funciona e suas aplicações; apresentar um vídeo ou simulação de um sistema de automação mais complexo.</li>
+                            <li><strong>Entrega:</strong> Slides da apresentação, roteiro detalhado e, se possível, uma demonstração prática (ao vivo ou em vídeo) do conceito/projeto.</li>
+                        </ul>
+                    </a>
+                </div>
+
+                <p class="mt-6 font-semibold text-gray-800">
+                    <strong>Requisito Essencial:</strong> Qualquer que seja a opção escolhida, o produto final deve obrigatoriamente demonstrar uma compreensão clara dos conceitos de automação residencial e a aplicação prática do Arduino.
+                </p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-10 pb-4">
+            <p class="text-sm">Roteiro de Pesquisa - Programação e Robótica 7º Ano</p>
+            <p class="text-sm">Explorando o mundo da automação com criatividade e tecnologia.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
