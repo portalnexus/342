@@ -1,3 +1,12 @@
+<!-- 
+  MODELO DE ARQUIVO DE ESTILO (CSS)
+
+  INSTRUÇÕES:
+  1. Copie este arquivo para a pasta do seu novo roteiro (ex: /CIENCIAS/FOTOSSINTESE/style.css).
+  2. Para criar um novo tema, basta substituir os códigos de cores nas variáveis abaixo.
+  3. Procure por 'Primary Color', 'Secondary Color', e 'Accent Color' para encontrar os locais de troca.
+-->
+
 /* Custom styles to use the Inter font */
 body {
     font-family: 'Inter', sans-serif;
@@ -17,11 +26,13 @@ body {
 
 /* Header styling */
 header h1 {
+    /* TROCAR COR AQUI (Primária) */
     color: #0277BD; /* Primary Color: Strong Blue */
     font-size: 2.5rem;
     line-height: 1.2;
 }
 header p {
+    /* TROCAR COR AQUI (Secundária) */
     color: #00838F; /* Secondary Color: Deep Cyan */
     font-size: 1.5rem;
 }
@@ -30,7 +41,9 @@ header p {
 .section-heading {
     font-size: 2.25rem;
     font-weight: 700;
+    /* TROCAR COR AQUI (Primária) */
     color: #0277BD; /* Primary Color: Strong Blue */
+    /* TROCAR COR AQUI (Secundária) */
     border-bottom: 3px solid #00838F; /* Secondary Color: Deep Cyan */
     padding-bottom: 0.75rem;
     margin-bottom: 1.5rem;
@@ -41,29 +54,59 @@ header p {
 .subsection-heading {
     font-size: 1.75rem;
     font-weight: 600;
+    /* TROCAR COR AQUI (Primária - Variante Clara) */
     color: #0288D1; /* Lighter variant of primary blue */
     margin-bottom: 1rem;
 }
 
 /* Blockquote styling */
 blockquote {
+    /* TROCAR COR AQUI (Destaque) */
     border-left: 6px solid #FFB300; /* Accent Color: Amber */
     padding-left: 1.5rem;
     margin: 2rem 0;
     font-style: italic;
     color: #555;
+    /* TROCAR COR AQUI (Destaque - Fundo) */
     background-color: rgba(255, 179, 0, 0.08); /* Light amber background */
     border-radius: 0.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
-/* Decimal List styling */
+/* Footer styling */
+footer {
+    /* TROCAR COR AQUI (Primária) */
+    color: #0277BD; /* Primary Color: Strong Blue */
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Back button on guide pages */
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    /* TROCAR COR AQUI (Primária) */
+    background-color: #0277BD;
+    color: #FFFFFF;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    /* TROCAR COR AQUI (Primária - Variante Escura) */
+    background-color: #01579B; /* Darker blue on hover */
+}
+
+/* --- ESTILOS FIXOS (GERALMENTE NÃO PRECISAM MUDAR) --- */
+
 .decimal-list {
     list-style-type: decimal;
     list-style-position: outside;
     padding: 1.5rem;
-    background: linear-gradient(145deg, #E0F7FA, #E8EAF6); /* List Gradient */
+    background: linear-gradient(145deg, #E0F7FA, #E8EAF6);
     border-radius: 0.75rem;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
     margin-top: 1rem;
@@ -79,9 +122,8 @@ blockquote {
     line-height: 1.6;
 }
 
-/* Product option styling */
 .product-option {
-    background: linear-gradient(145deg, #F1F8E9, #E3F2FD); /* Option Gradient */
+    background: linear-gradient(145deg, #F1F8E9, #E3F2FD);
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -107,14 +149,6 @@ blockquote {
     margin-bottom: 0.25rem;
 }
 
-/* Footer styling */
-footer {
-    color: #0277BD; /* Primary Color: Strong Blue */
-    font-size: 0.9rem;
-    margin-top: 2rem;
-}
-
-/* Responsive adjustments */
 @media (max-width: 640px) {
     header h1 { font-size: 2rem; }
     header p { font-size: 1.25rem; }
@@ -123,7 +157,6 @@ footer {
     .container { padding: 1rem; }
 }
 
-/* Guide Page Styles */
 .guide-container {
     background-color: #FFFFFF;
     border-radius: 1.5rem;
@@ -153,7 +186,7 @@ footer {
     color: #333;
 }
 .code-block {
-    background-color: #263238; /* Dark blue-grey background */
+    background-color: #263238;
     color: #ECEFF1;
     padding: 1.5rem;
     border-radius: 0.75rem;
@@ -161,18 +194,4 @@ footer {
     margin-bottom: 1rem;
     overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
-}
-.back-button {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #0277BD;
-    color: #FFFFFF;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-.back-button:hover {
-    background-color: #01579B; /* Darker blue on hover */
 }
