@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção D: Gerador de Progressão Geométrica (PG)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="guide-container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="guide-heading">Guia da Opção D: Gerador de PG</h1>
+        </header>
+        <main class="p-6 md:p-10">
+            <section>
+                <h2 class="guide-subheading">Estrutura do Algoritmo</h2>
+                <p class="guide-text mb-6">Use este guia para criar um programa que gera os 10 primeiros termos de uma Progressão Geométrica.</p>
+
+                <h3 class="subsection-heading">1. Início e Variáveis</h3>
+                <p class="guide-text mb-4">Declare variáveis do tipo `inteiro` ou `real` para: o primeiro termo, a razão, e o termo atual da sequência.</p>
+
+                <h3 class="subsection-heading">2. Entrada de Dados</h3>
+                <p class="guide-text mb-4">Peça ao usuário para digitar o primeiro termo e a razão da PG. Guarde os valores nas variáveis.</p>
+
+                <h3 class="subsection-heading">3. Lógica e Laço de Repetição</h3>
+                <p class="guide-text mb-4">A lógica é muito parecida com a da PA, mas em vez de somar, vamos multiplicar. Inicialize o `termo_atual` com o valor do primeiro termo. Use um laço `para` de 1 a 10. A cada volta, exiba o `termo_atual` e depois o atualize, multiplicando-o pela razão.</p>
+
+                <h3 class="subsection-heading">4. Saída de Dados</h3>
+                <p class="guide-text mb-4">Dentro do laço, use `escreva()` para mostrar cada termo da PG, separado por um espaço.</p>
+
+                <h3 class="subsection-heading">Exemplo de Código</h3>
+                <div class="code-block">
+<pre><code>
+programa {
+  funcao inicio() {
+    real primeiro_termo
+    real razao
+    real termo_atual
+
+    escreva("Gerador de PG\n")
+    escreva("Digite o primeiro termo: ")
+    leia(primeiro_termo)
+
+    escreva("Digite a razão: ")
+    leia(razao)
+
+    termo_atual = primeiro_termo
+
+    escreva("\nOs 10 primeiros termos da PG são: \n")
+    para (inteiro i = 1; i <= 10; i++) {
+      escreva(termo_atual, " ")
+      termo_atual = termo_atual * razao
+    }
+  }
+}
+</code></pre>
+                </div>
+
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

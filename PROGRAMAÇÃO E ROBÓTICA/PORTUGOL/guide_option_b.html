@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção B: Gerador de Tabuada</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="guide-container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="guide-heading">Guia da Opção B: Gerador de Tabuada</h1>
+        </header>
+        <main class="p-6 md:p-10">
+            <section>
+                <h2 class="guide-subheading">Estrutura do Algoritmo</h2>
+                <p class="guide-text mb-6">Use este guia para criar um programa que gera a tabuada de um número escolhido pelo usuário.</p>
+
+                <h3 class="subsection-heading">1. Início e Variáveis</h3>
+                <p class="guide-text mb-4">Declare uma variável do tipo `inteiro` para guardar o número que o usuário vai escolher. Você também precisará de uma variável de controle para o laço de repetição, que geralmente chamamos de `i`.</p>
+
+                <h3 class="subsection-heading">2. Entrada de Dados</h3>
+                <p class="guide-text mb-4">Peça ao usuário para digitar o número da tabuada que ele deseja ver. Guarde esse valor na sua variável.</p>
+
+                <h3 class="subsection-heading">3. Laço de Repetição `para`</h3>
+                <p class="guide-text mb-4">A tabuada vai de 1 a 10. Um laço `para` é perfeito para isso. Configure o laço para que a variável `i` comece em 1, vá até 10, e aumente de 1 em 1 a cada passo.</p>
+
+                <h3 class="subsection-heading">4. Saída de Dados Dentro do Laço</h3>
+                <p class="guide-text mb-4">A cada volta do laço, você deve calcular e exibir uma linha da tabuada. Por exemplo: `escreva(numero, " x ", i, " = ", numero * i)`. Isso irá mostrar a multiplicação do número do usuário pelo valor atual de `i`.</p>
+
+                <h3 class="subsection-heading">Exemplo de Código</h3>
+                <div class="code-block">
+<pre><code>
+programa {
+  funcao inicio() {
+    inteiro numero
+
+    escreva("Digite um número para ver a tabuada: ")
+    leia(numero)
+
+    escreva("\nTabuada do ", numero, ":\n")
+
+    para (inteiro i = 1; i <= 10; i++) {
+      escreva(numero, " x ", i, " = ", numero * i, "\n")
+    }
+  }
+}
+</code></pre>
+                </div>
+
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

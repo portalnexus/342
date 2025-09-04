@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção A: Calculadora de Idade</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="guide-container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="guide-heading">Guia da Opção A: Calculadora de Idade</h1>
+        </header>
+        <main class="p-6 md:p-10">
+            <section>
+                <h2 class="guide-subheading">Estrutura do Algoritmo</h2>
+                <p class="guide-text mb-6">Use este guia para criar seu programa em Portugol. Você pode usar uma ferramenta online como o Portugol Webstudio para testar.</p>
+
+                <h3 class="subsection-heading">1. Início e Variáveis</h3>
+                <p class="guide-text mb-4">Todo programa começa com a palavra `inicio`. Você precisará de três variáveis do tipo `inteiro`: uma para o ano de nascimento, uma para o ano atual e uma para a idade.</p>
+
+                <h3 class="subsection-heading">2. Entrada de Dados</h3>
+                <p class="guide-text mb-4">Use o comando `escreva()` para pedir ao usuário que digite o ano em que nasceu. Em seguida, use o comando `leia()` para guardar esse valor na variável correspondente. Faça o mesmo para o ano atual.</p>
+
+                <h3 class="subsection-heading">3. Processamento</h3>
+                <p class="guide-text mb-4">Esta é a parte lógica. A idade será o resultado da subtração do ano atual pelo ano de nascimento. Atribua o resultado dessa conta à sua variável `idade`.</p>
+
+                <h3 class="subsection-heading">4. Saída de Dados</h3>
+                <p class="guide-text mb-4">Use o comando `escreva()` para mostrar o resultado na tela. Você pode montar uma frase, como: "Você tem ou vai fazer X anos em [ano atual]."</p>
+
+                <h3 class="subsection-heading">Exemplo de Código</h3>
+                <div class="code-block">
+<pre><code>
+programa {
+  funcao inicio() {
+    inteiro ano_nascimento
+    inteiro ano_atual
+    inteiro idade
+
+    escreva("Digite o seu ano de nascimento: ")
+    leia(ano_nascimento)
+
+    escreva("Digite o ano atual: ")
+    leia(ano_atual)
+
+    idade = ano_atual - ano_nascimento
+
+    escreva("\nSua idade é: ", idade, " anos.")
+  }
+}
+</code></pre>
+                </div>
+
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

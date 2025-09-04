@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção C: Gerador de Progressão Aritmética (PA)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="guide-container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="guide-heading">Guia da Opção C: Gerador de PA</h1>
+        </header>
+        <main class="p-6 md:p-10">
+            <section>
+                <h2 class="guide-subheading">Estrutura do Algoritmo</h2>
+                <p class="guide-text mb-6">Use este guia para criar um programa que gera os 10 primeiros termos de uma Progressão Aritmética.</p>
+
+                <h3 class="subsection-heading">1. Início e Variáveis</h3>
+                <p class="guide-text mb-4">Você precisará de variáveis do tipo `inteiro` para: o primeiro termo da PA, a razão, e uma variável para guardar o termo atual da sequência.</p>
+
+                <h3 class="subsection-heading">2. Entrada de Dados</h3>
+                <p class="guide-text mb-4">Peça ao usuário para digitar o primeiro termo da PA e a razão. Guarde esses valores nas variáveis correspondentes.</p>
+
+                <h3 class="subsection-heading">3. Lógica e Laço de Repetição</h3>
+                <p class="guide-text mb-4">Inicialize a variável `termo_atual` com o valor do primeiro termo. Use um laço `para` que se repita 10 vezes. Na primeira volta, apenas exiba o `termo_atual`. Nas voltas seguintes, some a razão ao `termo_atual` antes de exibi-lo.</p>
+
+                <h3 class="subsection-heading">4. Saída de Dados</h3>
+                <p class="guide-text mb-4">Dentro do laço, use o comando `escreva()` para mostrar cada termo da PA. Você pode adicionar uma vírgula ou um espaço para separar os números.</p>
+
+                <h3 class="subsection-heading">Exemplo de Código</h3>
+                <div class="code-block">
+<pre><code>
+programa {
+  funcao inicio() {
+    inteiro primeiro_termo
+    inteiro razao
+    inteiro termo_atual
+
+    escreva("Gerador de PA\n")
+    escreva("Digite o primeiro termo: ")
+    leia(primeiro_termo)
+
+    escreva("Digite a razão: ")
+    leia(razao)
+
+    termo_atual = primeiro_termo
+
+    escreva("\nOs 10 primeiros termos da PA são: \n")
+    para (inteiro i = 1; i <= 10; i++) {
+      escreva(termo_atual, " ")
+      termo_atual = termo_atual + razao
+    }
+  }
+}
+</code></pre>
+                </div>
+
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

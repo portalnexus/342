@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção B: Semáforo Simples com Arduino</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="guide-container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="guide-heading">Guia da Opção B: Semáforo Simples com Arduino</h1>
+        </header>
+        <main class="p-6 md:p-10">
+            <section>
+                <h2 class="guide-subheading">Estrutura para seu Projeto</h2>
+                <p class="guide-text mb-6">Use este guia para montar o circuito e programar seu semáforo.</p>
+
+                <h3 class="subsection-heading">1. Componentes Necessários</h3>
+                <p class="guide-text mb-4">Na seção "Circuitos", adicione os seguintes componentes à sua área de trabalho: 1 Arduino Uno, 1 Protoboard, 3 LEDs (1 vermelho, 1 amarelo, 1 verde) e 3 Resistores de 220Ω.</p>
+
+                <h3 class="subsection-heading">2. Montagem do Circuito</h3>
+                <p class="guide-text mb-4">Conecte o pino GND (terra) do Arduino a uma das linhas azuis da protoboard. Conecte cada LED à protoboard. O terminal mais longo (anodo) de cada LED deve ser conectado a um resistor. A outra ponta do resistor deve ser conectada a um pino digital do Arduino (ex: pino 13 para o verde, 12 para o amarelo, 11 para o vermelho). O terminal mais curto (catodo) de todos os LEDs deve ser conectado à linha do GND na protoboard.</p>
+
+                <h3 class="subsection-heading">3. Programação em Blocos</h3>
+                <p class="guide-text mb-4">Clique em "Código" e escolha a programação em blocos. Crie uma sequência lógica: <br>1. Acenda o LED verde (definir pino 13 como ALTO) e apague os outros. <br>2. Espere alguns segundos. <br>3. Apague o verde, acenda o amarelo. <br>4. Espere um segundo. <br>5. Apague o amarelo, acenda o vermelho. <br>6. Espere mais alguns segundos. <br>Use os blocos de "Saída" para controlar os pinos e os de "Controle" para as pausas.</p>
+
+                <h3 class="subsection-heading">4. Simulação e Teste</h3>
+                <p class="guide-text mb-4">Clique em "Iniciar simulação". Seu semáforo deve começar a operar na sequência que você programou. Se algo não funcionar, verifique as conexões do circuito e a lógica do seu código.</p>
+
+                <h3 class="subsection-heading">5. Documentação</h3>
+                <p class="guide-text mb-4">Tire um print da tela mostrando seu circuito montado e os blocos de código. Escreva um parágrafo explicando como o circuito funciona e por que os resistores são importantes.</p>
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
