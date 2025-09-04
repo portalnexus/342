@@ -1,0 +1,209 @@
+/* Custom styles to use the Inter font */
+body {
+    font-family: 'Inter', sans-serif;
+    /* White background */
+    background-color: #FFFFFF; /* Pure white */
+    color: #333; /* Darker text for readability */
+}
+
+/* Main container styling */
+.container {
+    background-color: #FFFFFF; /* Fully opaque white */
+    border-radius: 2rem; /* More rounded corners */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Header styling */
+header h1 {
+    color: #6D28D9; /* Deeper purple */
+    font-size: 2.5rem; /* Larger font */
+    line-height: 1.2;
+}
+header p {
+    color: #EC4899; /* Magenta accent */
+    font-size: 1.5rem;
+}
+
+/* Section headings */
+.section-heading {
+    font-size: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: #6D28D9; /* Deeper purple */
+    border-bottom: 3px solid #EC4899; /* Magenta border */
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Subsection headings */
+.subsection-heading {
+    font-size: 1.75rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    color: #8B5CF6; /* Purple */
+    margin-bottom: 1rem;
+}
+
+/* Blockquote styling */
+blockquote {
+    border-left: 6px solid #FACC15; /* Yellow border */
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #555; /* Slightly darker gray */
+    background-color: rgba(250, 204, 21, 0.1); /* Light yellow background */
+    border-radius: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Decimal List styling (for main lists) */
+.decimal-list {
+    list-style-type: decimal; /* Decimal numbering */
+    list-style-position: outside;
+    padding: 1.5rem;
+    /* Vibrant gradient background for cards */
+    background: linear-gradient(145deg, #E0F7FA, #E8F5E9); /* Light blue to light green gradient */
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for hover */
+}
+.decimal-list:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+.decimal-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Roman List styling (for lists inside cards, if any, or specific Roman lists) */
+.roman-list {
+    list-style-type: upper-roman; /* Roman numbering */
+    list-style-position: outside;
+    /* No background/shadow here, as it's assumed to be inside another card */
+    /* If this class is used directly as a card, these properties would be needed */
+}
+.roman-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+
+/* Product option styling (Etapa 4) */
+.product-option {
+    background: linear-gradient(145deg, #F3E8FF, #FCE7F6); /* Light purple to light pink gradient */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.product-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.2), 0 6px 8px -3px rgba(0, 0, 0, 0.1);
+}
+.product-option-heading {
+    font-size: 1.5rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #6D28D9; /* Deeper purple */
+    margin-bottom: 0.75rem;
+}
+.product-option ul {
+    list-style-type: upper-roman; /* Changed from disc to upper-roman */
+    list-style-position: inside;
+    margin-top: 0.75rem;
+    color: #555;
+}
+.product-option li {
+    margin-bottom: 0.25rem;
+}
+
+/* Footer styling */
+footer {
+    color: #6D28D9; /* Deeper purple */
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    header p {
+        font-size: 1.25rem;
+    }
+    .section-heading {
+        font-size: 1.75rem;
+    }
+    .subsection-heading {
+        font-size: 1.5rem;
+    }
+    .container {
+        padding: 1rem;
+    }
+}
+
+
+/* Additional styles for guide pages */
+.guide-container {
+    background-color: #FFFFFF;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.guide-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #6D28D9;
+    margin-bottom: 1rem;
+}
+
+.guide-subheading {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #8B5CF6;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #EC4899;
+    padding-bottom: 0.5rem;
+}
+
+.guide-text {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #333;
+}
+
+.code-block {
+    background-color: #1E1E1E; /* Dark background for code */
+    color: #D4D4D4; /* Light text */
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto; /* Allow horizontal scrolling for long code lines */
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font */
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #6D28D9;
+    color: #FFFFFF;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    background-color: #5B21B6; /* Darker purple on hover */
+}

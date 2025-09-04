@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Opção A: Linha do Tempo Interativa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="font-bold text-gray-900">Guia da Opção A: Criando uma Linha do Tempo Interativa</h1>
+        </header>
+        <main class="rounded-2xl shadow-lg p-6 md:p-10">
+            <section>
+                <h2 class="section-heading">Estrutura para sua Página Web</h2>
+                <p class="guide-text mb-6">Use este guia para estruturar seu código HTML e CSS. O uso de JavaScript para a interatividade é um desafio extra bem-vindo!</p>
+
+                <h3 class="subsection-heading">1. Estrutura HTML (o esqueleto)</h3>
+                <p class="guide-text mb-4">No seu arquivo `index.html`, crie uma estrutura para a linha do tempo. Você pode usar uma lista `<ul>` onde cada `<li>` é um evento.</p>
+                <div class="code-block">
+                    <code>
+&lt;ul class="timeline"&gt;
+  &lt;li&gt;
+    &lt;div class="timeline-badge"&gt;1972&lt;/div&gt;
+    &lt;div class="timeline-panel"&gt;
+      &lt;h4&gt;Lançamento do Pong&lt;/h4&gt;
+      &lt;p&gt;Descrição do evento...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;!-- Outros eventos --&gt;
+&lt;/ul&gt;
+                    </code>
+                </div>
+
+                <h3 class="subsection-heading">2. Estilização com CSS</h3>
+                <p class="guide-text mb-4">No seu arquivo `style.css`, crie os estilos para a classe `.timeline`. Pesquise por "CSS Timeline examples" para ter inspiração de design.</p>
+
+                <h3 class="subsection-heading">3. Conteúdo</h3>
+                <p class="guide-text mb-4">Adicione pelo menos 5 eventos importantes de diferentes décadas na sua linha do tempo, com uma breve descrição e uma imagem para cada um.</p>
+
+                <h3 class="subsection-heading">4. (Opcional) Interatividade com JavaScript</h3>
+                <p class="guide-text mb-4">Adicione um efeito que revela o conteúdo do evento apenas quando o usuário clica no ano, por exemplo.</p>
+            </section>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="back-button">Voltar</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
