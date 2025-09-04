@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://www.transparenttextures.com/patterns/cubes.png');
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #ff00ff;
+    padding: 1.5rem 0;
+    backdrop-filter: blur(5px);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #ff00ff;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+main {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+section {
+    background-color: rgba(26, 26, 26, 0.8);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 960px;
+    margin: 40px auto;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.1);
+}
+
+h1, h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff00ff;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+#inicio h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    margin-bottom: 10px;
+}
+
+#inicio p {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #cccccc;
+    margin-bottom: 30px;
+}
+
+
+.cta-button {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #ff00ff;
+    color: #121212;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    display: inline-block; /* Added for margin */
+    margin-top: 20px; /* Added for spacing */
+    border: 2px solid #ff00ff;
+}
+
+.cta-button:hover {
+    background-color: #ffff00;
+    border-color: #ffff00;
+    box-shadow: 0 0 20px #ffff00;
+}
+
+
+
+#why-participate h2 {
+    margin-bottom: 40px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap; /* Add wrap for smaller screens */
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.feature {
+    flex: 1;
+    padding: 20px;
+    min-width: 250px; /* Ensure features don't get too squished */
+}
+
+.feature i {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    color: #ffff00;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ffff00;
+}
+
+.feature h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff00ff;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+/* About Tinkercad Section */
+#about-tinkercad .tinkercad-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+#about-tinkercad .tinkercad-text {
+    flex: 2;
+}
+
+#about-tinkercad .tinkercad-icon {
+    flex: 1;
+    text-align: center;
+}
+
+#about-tinkercad .tinkercad-icon i {
+    font-size: clamp(8rem, 20vw, 12rem);
+    color: #9d00ff;
+    opacity: 0.5;
+}
+
+.tinkercad-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.tinkercad-features li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.tinkercad-features i {
+    color: #ffff00;
+    margin-right: 10px;
+}
+
+/* Guide Page */
+#guia {
+    text-align: left;
+}
+
+.guide-step {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-left: 4px solid #9d00ff;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.guide-step h3 {
+    color: #ffff00;
+    margin-top: 0;
+}
+
+.guide-step ol, .guide-step ul {
+    padding-left: 20px;
+}
+
+.guide-step li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.guide-step a {
+    color: #ff00ff;
+    font-weight: bold;
+}
+
+.guide-step a:hover {
+    text-decoration: underline;
+}
+
+.guide-step i {
+    color: #ffff00;
+    margin-right: 8px;
+}
+
+.final-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+#regras ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#regras ul li {
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 3px solid #ff00ff;
+    transition: background-color 0.3s;
+}
+
+#regras ul li:hover {
+    background-color: rgba(255, 0, 255, 0.1);
+}
+
+#cronometro #timer {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    color: #ffff00;
+    background-color: #000;
+    padding: 20px 40px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 2px solid #ffff00;
+    box-shadow: 0 0 20px #ffff00, inset 0 0 10px #ffff00;
+    text-shadow: 0 0 10px #ffff00;
+    font-size: clamp(3rem, 15vw, 7rem);
+}
+
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+}
+
+thead {
+    background-color: #9d00ff;
+    color: #121212;
+    font-family: 'Orbitron', sans-serif;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #333;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 0, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #about-tinkercad .tinkercad-content {
+        flex-direction: column;
+    }
+
+    #about-tinkercad .tinkercad-icon i {
+        font-size: 6rem;
+    }
+}
