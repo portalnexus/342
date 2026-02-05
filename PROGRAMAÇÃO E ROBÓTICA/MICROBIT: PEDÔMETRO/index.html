@@ -1,12 +1,113 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </body>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Maker: Pedômetro com Micro:bit</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        header { background-color: #5d2f91; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; }
+        h2 { color: #5d2f91; border-bottom: 2px solid #5d2f91; padding-bottom: 5px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .step { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .step input[type="checkbox"] { margin-right: 15px; margin-top: 5px; transform: scale(1.3); }
+        .material-list { list-style: none; padding: 0; }
+        .material-list li:before { content: "🛠️ "; margin-right: 10px; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin: 10px 0; }
+        .challenge { background-color: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; }
+        .tip { background-color: #fff9c4; border-left: 5px solid #fbc02d; padding: 15px; margin-top: 10px; }
+        footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+
+<header>
+    [cite_start]<h1>Projeto Maker: Construindo um Pedômetro [cite: 1]</h1>
+    <p>Olá, exploradores da tecnologia! [cite_start]Vamos colocar o corpo em movimento e a mente para programar. [cite: 3]</p>
+</header>
+
+<section class="card">
+    <h2>🎯 O Desafio</h2>
+    [cite_start]<p>Programar a placa Micro:bit para "sentir" seus passos através de um sensor de movimento e exibir o total na tela de LEDs. [cite: 2, 5]</p>
+</section>
+
+<section class="card">
+    [cite_start]<h2>📦 Materiais Necessários [cite: 6]</h2>
+    <ul class="material-list">
+        [cite_start]<li>1 Placa Micro:bit [cite: 8]</li>
+        [cite_start]<li>1 Cabo USB [cite: 9]</li>
+        [cite_start]<li>Suporte de bateria + 2 pilhas AAA (opcional para mobilidade) [cite: 10]</li>
+    </ul>
+</section>
+
+<section class="card">
+    [cite_start]<h2>🚀 Mão na Massa: Passo a Passo [cite: 11]</h2>
+    
+    <div class="step">
+        <input type="checkbox">
+        <div>
+            <strong>Passo 1: Ambiente de Programação</strong><br>
+            [cite_start]Acesse <a href="https://makecode.microbit.org" target="_blank">makecode.microbit.org</a> e crie um "Novo Projeto" chamado "Meu Pedômetro". [cite: 14, 15]
+        </div>
+    </div>
+
+    <div class="step">
+        <input type="checkbox">
+        <div>
+            <strong>Passo 2: O Sensor de Movimento</strong><br>
+            [cite_start]O Micro:bit usa um <strong>acelerômetro</strong>. [cite: 17] [cite_start]Procure no menu <em>Entrada</em> pelo bloco <mark>no agitado (on shake)</mark>. [cite: 18]
+        </div>
+    </div>
+
+    <div class="step">
+        <input type="checkbox">
+        <div>
+            <strong>Passo 3: Criando a Variável</strong><br>
+            [cite_start]Vá em <em>Variáveis</em>, clique em "Criar Variável" e dê o nome de <code>passos</code>. [cite: 21, 23] [cite_start]Ela guardará nossa contagem. [cite: 20]
+        </div>
+    </div>
+
+    <div class="step">
+        <input type="checkbox">
+        <div>
+            [cite_start]<strong>Passo 4: A Lógica da Contagem [cite: 24]</strong><br>
+            [cite_start]Encaixe o bloco <mark>alterar passos por 1</mark> dentro do bloco <mark>no agitado</mark>. [cite: 27, 28]
+            [cite_start]<div class="code-block">Entrada -> ao agitar <br> &nbsp;&nbsp;Variáveis -> alterar passos por 1 [cite: 30, 31]</div>
+        </div>
+    </div>
+
+    <div class="step">
+        <input type="checkbox">
+        <div>
+            [cite_start]<strong>Passo 5: Mostrando na Tela [cite: 32]</strong><br>
+            [cite_start]Use o bloco <mark>para sempre (forever)</mark> e coloque dentro dele o <mark>mostrar número</mark>, usando a variável <code>passos</code> como valor. [cite: 34, 35, 36]
+            [cite_start]<div class="code-block">Básico -> para sempre <br> &nbsp;&nbsp;Básico -> mostrar número (passos) [cite: 38, 39]</div>
+        </div>
+    </div>
+</section>
+
+<section class="card">
+    [cite_start]<h2>🔧 Melhoria Opcional: Zerar Contagem [cite: 40]</h2>
+    [cite_start]<p>Para recomeçar, use o <strong>Botão A</strong> para definir a variável para zero. [cite: 41, 43]</p>
+    [cite_start]<div class="code-block">Entrada -> no botão A pressionado <br> &nbsp;&nbsp;Variáveis -> definir passos para 0 [cite: 45]</div>
+</section>
+
+<section class="card challenge">
+    [cite_start]<h2>🏆 Desafio Extra (Indo Além) [cite: 57]</h2>
+    [cite_start]<p>Como fazer o Micro:bit mostrar um ícone feliz quando você atingir a meta de 10 passos? [cite: 58]</p>
+    <div class="tip">
+        [cite_start]<strong>Dica:</strong> Use o bloco <strong>Se/Senão</strong> do menu <em>Lógica</em>. [cite: 59]
+    </div>
+</section>
+
+<section class="card challenge" style="background-color: #e3f2fd; border-left-color: #2196f3;">
+    <h2>📐 Integração Matemática (Sugestão do Professor)</h2>
+    <p>Se cada passo seu mede em média 60 cm, como poderíamos programar o Micro:bit para mostrar a <strong>distância percorrida em metros</strong> em vez de apenas o número de passos?</p>
+</section>
+
+<footer>
+    <p>Projeto desenvolvido para aulas de Tecnologia e Inovação. Bom trabalho!</p>
+</footer>
+
+</body>
 </html>
