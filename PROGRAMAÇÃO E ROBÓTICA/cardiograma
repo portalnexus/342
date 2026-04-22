@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de ECG Educativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+        }
+        canvas {
+            image-rendering: crisp-edges;
+        }
+        .monitor-glow {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+
+    <div class="max-w-5xl w-full space-y-6">
+        <!-- Cabeçalho -->
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl md:text-4xl font-bold text-green-400">Simulador de Eletrocardiograma (ECG)</h1>
+            <p class="text-slate-400">Recurso visual para aulas de biologia e ciências sobre o sistema cardiovascular.</p>
+        </header>
+
+        <!-- Monitor Principal -->
+        <div class="relative bg-black rounded-xl border-4 border-slate-700 overflow-hidden monitor-glow">
+            <!-- Overlay de Informações -->
+            <div class="absolute top-4 left-6 z-10 flex space-x-8">
+                <div>
+                    <span class="text-xs text-green-500 block uppercase font-bold tracking-widest">Frequência</span>
+                    <span id="bpm-display" class="text-4xl font-mono text-green-400">72</span>
+                    <span class="text-green-600 font-bold ml-1">BPM</span>
+                </div>
+                <div>
+                    <span class="text-xs text-blue-500 block uppercase font-bold tracking-widest">Status</span>
+                    <span id="status-display" class="text-xl font-mono text-blue-400 uppercase">Normal</span>
+                </div>
+            </div>
+
+            <!-- Canvas do ECG -->
+            <canvas id="ecgCanvas" class="w-full h-64 md:h-96"></canvas>
+
+            <!-- Coração Pulsante -->
+            <div class="absolute top-4 right-6 text-red-500">
+                <svg id="heart-icon" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 transition-transform duration-100" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <!-- BPM -->
+            <div class="space-y-3">
+                <label class="flex justify-between text-sm font-medium">
+                    <span>Frequência Cardíaca (BPM)</span>
+                    <span class="text-green-400 font-bold" id="bpm-val">72</span>
+                </label>
+                <input type="range" id="bpm-range" min="40" max="180" value="72" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-green-500">
+                <p class="text-xs text-slate-500">Ajuste para simular repouso ou exercício.</p>
+            </div>
+
+            <!-- Amplitude e Velocidade -->
+            <div class="space-y-3">
+                <label class="flex justify-between text-sm font-medium">
+                    <span>Amplitude do Pulso</span>
+                    <span class="text-blue-400 font-bold" id="amp-val">1.0x</span>
+                </label>
+                <input type="range" id="amp-range" min="0.5" max="2.0" step="0.1" value="1.0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                
+                <label class="flex justify-between text-sm font-medium mt-4">
+                    <span>Velocidade do Varredura</span>
+                    <span class="text-yellow-400 font-bold" id="speed-val">1.0x</span>
+                </label>
+                <input type="range" id="speed-range" min="0.5" max="2.0" step="0.1" value="1.0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-yellow-500">
+            </div>
+
+            <!-- Modos e Som -->
+            <div class="flex flex-col space-y-4">
+                <button id="arrhythmia-btn" class="w-full py-2 px-4 bg-slate-700 hover:bg-red-900 border border-red-500/30 rounded-lg transition-colors font-medium">
+                    Simular Arritmia
+                </button>
+                <div class="flex items-center justify-between bg-slate-900/50 p-3 rounded-lg">
+                    <span class="text-sm">Efeitos Sonoros</span>
+                    <button id="sound-toggle" class="px-3 py-1 bg-slate-700 rounded text-xs hover:bg-slate-600">OFF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legenda Educativa -->
+        <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                O que estamos vendo?
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                <div class="p-3 bg-black/30 rounded-lg border-l-4 border-green-500">
+                    <strong class="text-green-400 block mb-1">Onda P</strong>
+                    Representa a despolarização dos átrios (contração atrial).
+                </div>
+                <div class="p-3 bg-black/30 rounded-lg border-l-4 border-blue-500">
+                    <strong class="text-blue-400 block mb-1">Complexo QRS</strong>
+                    Despolarização dos ventrículos (contração ventricular principal).
+                </div>
+                <div class="p-3 bg-black/30 rounded-lg border-l-4 border-yellow-500">
+                    <strong class="text-yellow-400 block mb-1">Onda T</strong>
+                    Repolarização dos ventrículos (relaxamento para novo ciclo).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('ecgCanvas');
+        const ctx = canvas.getContext('2d');
+        const bpmRange = document.getElementById('bpm-range');
+        const ampRange = document.getElementById('amp-range');
+        const speedRange = document.getElementById('speed-range');
+        const arrhythmiaBtn = document.getElementById('arrhythmia-btn');
+        const soundToggle = document.getElementById('sound-toggle');
+        const bpmDisplay = document.getElementById('bpm-display');
+        const statusDisplay = document.getElementById('status-display');
+        const heartIcon = document.getElementById('heart-icon');
+
+        // Valores atuais
+        let bpm = 72;
+        let amplitude = 1.0;
+        let speedMultiplier = 1.0;
+        let isArrhythmia = false;
+        let isSoundOn = false;
+
+        // Configuração do Gráfico
+        let width, height;
+        let points = [];
+        const maxPoints = 500;
+        let xPos = 0;
+        let lastTime = 0;
+        let ecgCyclePosition = 0; // 0 to 1
+
+        function resize() {
+            width = canvas.parentElement.clientWidth;
+            height = canvas.parentElement.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Audio Context para o Beep
+        let audioCtx = null;
+        function playBeep() {
+            if (!isSoundOn) return;
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.1);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // Função matemática da onda de ECG
+        // Tenta mimetizar a morfologia clássica: P, QRS, T
+        function getECGValue(t) {
+            // t varia de 0 a 1 em cada batida
+            let val = 0;
+
+            // Onda P (pequeno bump no início)
+            if (t > 0.1 && t < 0.2) {
+                val += 0.15 * Math.sin(Math.PI * (t - 0.1) / 0.1);
+            }
+            
+            // Complexo QRS (o pico agudo)
+            if (t > 0.35 && t < 0.45) {
+                let qrsT = (t - 0.35) / 0.1;
+                if (qrsT < 0.2) val -= qrsT * 2; // Q
+                else if (qrsT < 0.6) val += (qrsT - 0.2) * 10 - 0.4; // R
+                else if (qrsT < 0.8) val -= (qrsT - 0.6) * 12 - 3.6; // S
+                else val += (qrsT - 0.8) * 2 - 1.2; // volta ao baseline
+            }
+
+            // Onda T (lombada após o QRS)
+            if (t > 0.6 && t < 0.8) {
+                val += 0.25 * Math.sin(Math.PI * (t - 0.6) / 0.2);
+            }
+
+            return val * amplitude;
+        }
+
+        function drawGrid() {
+            ctx.strokeStyle = '#064e3b'; // Verde bem escuro
+            ctx.lineWidth = 1;
+
+            // Linhas horizontais
+            for (let y = 0; y < height; y += 20) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
+            // Linhas verticais
+            for (let x = 0; x < width; x += 20) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+            
+            // Linha de centro
+            ctx.strokeStyle = '#065f46';
+            ctx.beginPath();
+            ctx.moveTo(0, height / 2);
+            ctx.lineTo(width, height / 2);
+            ctx.stroke();
+        }
+
+        let pulseDetected = false;
+
+        function animate(currentTime) {
+            if (!lastTime) lastTime = currentTime;
+            const deltaTime = (currentTime - lastTime) / 1000;
+            lastTime = currentTime;
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+            drawGrid();
+
+            // Atualiza posição do ciclo baseado no BPM
+            // BPM / 60 = batidas por segundo
+            let beatsPerSecond = bpm / 60;
+            
+            // Se arritmia, flutua levemente o BPM
+            if (isArrhythmia) {
+                beatsPerSecond *= (0.8 + Math.random() * 0.4);
+            }
+
+            ecgCyclePosition += beatsPerSecond * deltaTime;
+            if (ecgCyclePosition >= 1) {
+                ecgCyclePosition -= 1;
+                pulseDetected = false;
+            }
+
+            // Detecta o pico R para o som e animação do ícone
+            if (!pulseDetected && ecgCyclePosition > 0.4) {
+                playBeep();
+                heartIcon.style.transform = 'scale(1.3)';
+                setTimeout(() => heartIcon.style.transform = 'scale(1)', 100);
+                pulseDetected = true;
+            }
+
+            // Cálculo do valor Y
+            const ecgVal = getECGValue(ecgCyclePosition);
+            const y = (height / 2) - (ecgVal * 80);
+
+            // Adiciona ponto e desenha
+            points.push({ x: xPos, y: y });
+            if (points.length > 500) points.shift();
+
+            // Varredura visual: xPos move da esquerda para a direita
+            xPos += 3 * speedMultiplier;
+            if (xPos > width) {
+                xPos = 0;
+                points = []; // Limpa para o novo ciclo de varredura
+            }
+
+            // Desenhar a linha do ECG
+            ctx.beginPath();
+            ctx.strokeStyle = '#4ade80'; // Verde neon
+            ctx.lineWidth = 3;
+            ctx.lineJoin = 'round';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#4ade80';
+
+            for (let i = 0; i < points.length; i++) {
+                if (i === 0) ctx.moveTo(points[i].x, points[i].y);
+                else ctx.lineTo(points[i].x, points[i].y);
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            // Cursor de varredura
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(xPos, y, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            requestAnimationFrame(animate);
+        }
+
+        // Eventos
+        bpmRange.addEventListener('input', (e) => {
+            bpm = parseInt(e.target.value);
+            document.getElementById('bpm-val').innerText = bpm;
+            bpmDisplay.innerText = bpm;
+        });
+
+        ampRange.addEventListener('input', (e) => {
+            amplitude = parseFloat(e.target.value);
+            document.getElementById('amp-val').innerText = amplitude.toFixed(1) + 'x';
+        });
+
+        speedRange.addEventListener('input', (e) => {
+            speedMultiplier = parseFloat(e.target.value);
+            document.getElementById('speed-val').innerText = speedMultiplier.toFixed(1) + 'x';
+        });
+
+        arrhythmiaBtn.addEventListener('click', () => {
+            isArrhythmia = !isArrhythmia;
+            if (isArrhythmia) {
+                arrhythmiaBtn.classList.add('bg-red-600', 'text-white');
+                arrhythmiaBtn.innerText = 'Parar Arritmia';
+                statusDisplay.innerText = 'Arritmia';
+                statusDisplay.classList.replace('text-blue-400', 'text-red-400');
+            } else {
+                arrhythmiaBtn.classList.remove('bg-red-600', 'text-white');
+                arrhythmiaBtn.innerText = 'Simular Arritmia';
+                statusDisplay.innerText = 'Normal';
+                statusDisplay.classList.replace('text-red-400', 'text-blue-400');
+            }
+        });
+
+        soundToggle.addEventListener('click', () => {
+            isSoundOn = !isSoundOn;
+            soundToggle.innerText = isSoundOn ? 'ON' : 'OFF';
+            soundToggle.classList.toggle('bg-green-600', isSoundOn);
+            soundToggle.classList.toggle('bg-slate-700', !isSoundOn);
+        });
+
+        // Iniciar
+        requestAnimationFrame(animate);
+
+    </script>
+</body>
+</html>
